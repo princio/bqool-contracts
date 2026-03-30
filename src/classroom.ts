@@ -1,12 +1,12 @@
 /** Creates a new classroom */
-export namespace ClassRoomCreate {
+export namespace ClassroomCreate {
 	export interface Request {
 		name: string;
 	}
 }
 
 /** GET /classes — list all classrooms */
-export namespace ClassRoomList {
+export namespace ClassroomList {
 	export interface Response {
 		id: number;
 		name: string;
@@ -14,7 +14,7 @@ export namespace ClassRoomList {
 }
 
 /** GET /classes/:id — classroom detail with students and tests */
-export namespace ClassRoomDetail {
+export namespace ClassroomDetail {
 	export interface Query {
 		id: number;
 	}
@@ -27,7 +27,7 @@ export namespace ClassRoomDetail {
 }
 
 /** GET /dashboard — classroom summary with test/question tree */
-export namespace ClassRoomSummary {
+export namespace ClassroomSummary {
 	export interface Query {
 		id: number;
 	}
