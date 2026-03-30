@@ -1,49 +1,67 @@
-import type { BooleanQ, Concept, Criterion } from "@princio/bqool";
-export type { BooleanAnswer, BooleanQ, Concept, Criterion, } from "@princio/bqool";
+import type { Criterion } from "@princio/bqool";
+export type { BooleanQ, Criterion, } from "@princio/bqool";
 export interface RubricExportData {
     question_id: string;
-    concepts: (Concept & {
-        booleanqs: BooleanQ[];
-    })[];
-    criteria: (Criterion & {
-        booleanqs: BooleanQ[];
-    })[];
+    criteria: Criterion[];
     students: string[];
     answers: Record<string, string>;
 }
-export interface CreateRubricConceptRequest {
-    name: string;
-    definition: string;
+/** Creates a new rubric concept criterion */
+export declare namespace RubricConceptCreate {
+    interface Request {
+        name: string;
+        definition: string;
+    }
 }
-export interface CreateBooleanQRequest {
-    criterion_type: string;
-    criterion_id: number;
-    text: string;
+/** Creates a new boolean question linked to a criterion */
+export declare namespace BooleanQCreate {
+    interface Request {
+        criterion_type: string;
+        criterion_id: number;
+        text: string;
+    }
 }
-export interface UpdateBooleanQRequest {
-    text?: string;
+/** Updates a boolean question's text */
+export declare namespace BooleanQUpdate {
+    interface Request {
+        text?: string;
+    }
 }
-export interface CreateExpressionRequest {
-    name: string;
-    type: string;
+/** Creates a new expression criterion */
+export declare namespace ExpressionCreate {
+    interface Request {
+        name: string;
+        type: string;
+    }
 }
-export interface CreateCodeRequest {
-    expression: string;
-    type: string;
+/** Creates a new code criterion */
+export declare namespace CodeCreate {
+    interface Request {
+        expression: string;
+        type: string;
+    }
 }
-export interface CreateErrorRequest {
-    name: string;
-    description: string;
+/** Creates a new error criterion */
+export declare namespace ErrorCreate {
+    interface Request {
+        name: string;
+        description: string;
+    }
 }
-export interface UpdateCriterionFieldRequest {
-    field: string;
-    value: string | number;
+/** Updates a single field on a criterion */
+export declare namespace CriterionFieldUpdate {
+    interface Request {
+        field: string;
+        value: string | number;
+    }
 }
-/** Generic criterion creation (covers expression, code, error) */
-export interface CreateCriterionRequest {
-    name?: string;
-    expression?: string;
-    severity?: number;
-    definition?: string;
-    description?: string;
+/** Creates a new criterion (generic, covers expression/code/error) */
+export declare namespace CriterionCreate {
+    interface Request {
+        name?: string;
+        expression?: string;
+        severity?: number;
+        definition?: string;
+        description?: string;
+    }
 }

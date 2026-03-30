@@ -1,7 +1,4 @@
-import type { ClassRoomDetail } from "./classroom";
 import type { Question } from "./question";
-import type { StudentSummary } from "./student";
-export type { Test } from "@princio/bqool";
 /** Minimal test reference */
 export interface TestRef {
     id: number;
@@ -31,12 +28,6 @@ export interface TestDetailQuestion extends Pick<Question, "id" | "name"> {
     code_count: number;
     error_count: number;
 }
-export interface TestDetail {
-    test: TestRef;
-    classroom: ClassRoomDetail;
-    questions: TestDetailQuestion[];
-    students: StudentSummary[];
-}
 export interface TestRisultatiData {
     test: {
         id: number;
@@ -61,17 +52,29 @@ export interface TestRisultatiData {
         }>;
     }[];
 }
-export interface CreateTestRequest {
-    class_id: number;
-    name: string;
+/** Creates a new test in a classroom */
+export declare namespace TestCreate {
+    interface Request {
+        class_id: number;
+        name: string;
+    }
 }
-export interface UpdateTestRequest {
-    name: string;
+/** Updates test fields */
+export declare namespace TestUpdate {
+    interface Request {
+        name: string;
+    }
 }
-export interface AddQuestionToTestRequest {
-    root_question_id: number;
-    copy_baseline?: boolean;
+/** Adds a question to a test */
+export declare namespace TestQuestionAdd {
+    interface Request {
+        root_question_id: number;
+        copy_baseline?: boolean;
+    }
 }
-export interface UpdateQuestionNumberRequest {
-    number: number | null;
+/** Updates the question number within a test */
+export declare namespace TestQuestionNumberUpdate {
+    interface Request {
+        number: number | null;
+    }
 }

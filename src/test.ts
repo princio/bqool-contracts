@@ -1,7 +1,5 @@
 import type { Question } from "./question";
 
-export type { Test } from "@princio/bqool";
-
 /** Minimal test reference */
 export interface TestRef {
 	id: number;

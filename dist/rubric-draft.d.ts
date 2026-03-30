@@ -24,11 +24,14 @@ export interface PopulationReviewData {
     code: unknown[];
     errors: unknown[];
 }
-export interface CreatePopulationResponse {
-    id: string;
-    path: string;
-    relativePath: string;
-    question_id: number;
+/** Creates a new rubric population from AI output */
+export declare namespace PopulationCreate {
+    interface Response {
+        id: string;
+        path: string;
+        relativePath: string;
+        question_id: number;
+    }
 }
 export interface ConfirmPopulationResult {
     executed: number;

@@ -1,5 +1,5 @@
+import { Student } from "@princio/bqool";
 import type { Question } from "./question";
-import type { StudentDetail, StudentSummary } from "./student";
 
 export interface NavAnswerSummary {
 	id: number;
@@ -36,9 +36,9 @@ export interface NavTestContext {
 }
 
 export interface NavData {
-	student: StudentSummary;
+	student: Student;
 	question: Question;
-	siblings: (StudentSummary & { score: SiblingScore | null })[];
+	siblings: (Student & { score: SiblingScore | null })[];
 	answer: NavAnswerSummary | null;
 	test: NavTestContext | null;
 }
@@ -46,7 +46,7 @@ export interface NavData {
 export interface AnswerData {
 	text: string | null;
 	isblank: boolean;
-	student: StudentDetail;
+	student: Student;
 	question: Question;
-	siblings: StudentSummary[];
+	siblings: Student[];
 }

@@ -1,11 +1,11 @@
-import type { AnswerDetail, SetBonusRequest, SetGradeRequest, ToggleProtectionResponse, UpdateAnswerRequest, UpsertBooleanQAnswerRequest } from "./answer";
-import type { ClassRoomDetail, ClassRoomSummary, CreateClassRoomRequest } from "./classroom";
+import type { SetBonus, SetGrade, ToggleProtection, UpdateAnswer, UpsertBooleanQAnswer } from "./answer";
+import type { ClassroomSummary, CreateClassRoom } from "./classroom";
 import type { OkIdResponse, OkResponse } from "./common";
 import type { AnswerData, NavData } from "./nav";
-import type { CreateQuestionRequest, QuestionDetail, QuestionListItem, UpdateQuestionRequest } from "./question";
-import type { BooleanQ, CreateBooleanQRequest, RubricDetail, RubricExportData, SyncRubricPayload, UpdateBooleanQRequest, UpdateCriterionFieldRequest } from "./rubric";
-import type { AddStudentRequest, StudentDetail, StudentTestAnswersData, StudentTestsData } from "./student";
-import type { AddQuestionToTestRequest, CreateTestRequest, TestDetail, TestListItem, TestRef, TestRisultatiData, UpdateQuestionNumberRequest, UpdateTestRequest } from "./test";
+import type { CreateQuestion, QuestionDetail, QuestionListItem, UpdateQuestion } from "./question";
+import type { BooleanQ, CreateBooleanQ, RubricDetail, RubricExportData, SyncRubricPayload, UpdateBooleanQ, UpdateCriterionField } from "./rubric";
+import type { AddStudent, StudentDetail, StudentTestAnswersData, StudentTestsData } from "./student";
+import type { AddQuestionToTest, CreateTest, TestDetail, TestListItem, TestRef, TestRisultatiData, UpdateQuestionNumber, UpdateTest } from "./test";
 /**
  * Maps each route key to its HTTP method, body, params, query, and response types.
  *
@@ -23,11 +23,11 @@ export interface BackendApiTypeMap {
         list: {
             method: "GET";
             body: never;
-            response: ClassRoomSummary[];
+            response: ClassroomSummary[];
         };
         create: {
             method: "POST";
-            body: CreateClassRoomRequest;
+            body: CreateClassRoom.Request;
             response: OkIdResponse;
         };
         one: {
@@ -36,14 +36,14 @@ export interface BackendApiTypeMap {
                 id: number;
             };
             body: never;
-            response: ClassRoomDetail;
+            response: ClassroomSummary;
         };
         update: {
             method: "PUT";
             params: {
                 id: number;
             };
-            body: CreateClassRoomRequest;
+            body: CreateClassRoom.Request;
             response: OkResponse;
         };
         delete: {
@@ -60,7 +60,7 @@ export interface BackendApiTypeMap {
                 params: {
                     classId: number;
                 };
-                body: AddStudentRequest;
+                body: AddStudent.Request;
                 response: OkIdResponse;
             };
             remove: {
@@ -82,7 +82,7 @@ export interface BackendApiTypeMap {
         };
         create: {
             method: "POST";
-            body: CreateTestRequest;
+            body: CreateTest.Request;
             response: OkIdResponse;
         };
         one: {
@@ -98,7 +98,7 @@ export interface BackendApiTypeMap {
             params: {
                 id: number;
             };
-            body: UpdateTestRequest;
+            body: UpdateTest.Request;
             response: OkResponse;
         };
         delete: {
@@ -131,7 +131,7 @@ export interface BackendApiTypeMap {
                 params: {
                     testId: number;
                 };
-                body: AddQuestionToTestRequest;
+                body: AddQuestionToTest.Request;
                 response: OkResponse;
             };
             update: {
@@ -140,7 +140,7 @@ export interface BackendApiTypeMap {
                     testId: number;
                     questionId: number;
                 };
-                body: UpdateQuestionNumberRequest;
+                body: UpdateQuestionNumber.Request;
                 response: OkResponse;
             };
             remove: {
@@ -182,7 +182,7 @@ export interface BackendApiTypeMap {
         };
         create: {
             method: "POST";
-            body: CreateQuestionRequest;
+            body: CreateQuestion.Request;
             response: OkIdResponse;
         };
         one: {
@@ -198,7 +198,7 @@ export interface BackendApiTypeMap {
             params: {
                 id: number;
             };
-            body: UpdateQuestionRequest;
+            body: UpdateQuestion.Request;
             response: OkResponse;
         };
         delete: {
@@ -275,14 +275,14 @@ export interface BackendApiTypeMap {
                 id: number;
             };
             body: never;
-            response: AnswerDetail;
+            response: unknown;
         };
         update: {
             method: "PUT";
             params: {
                 id: number;
             };
-            body: UpdateAnswerRequest;
+            body: UpdateAnswer.Request;
             response: OkResponse;
         };
         protected: {
@@ -291,14 +291,14 @@ export interface BackendApiTypeMap {
                 id: number;
             };
             body: never;
-            response: ToggleProtectionResponse;
+            response: ToggleProtection.Response;
         };
         grade: {
             method: "PUT";
             params: {
                 id: number;
             };
-            body: SetGradeRequest;
+            body: SetGrade.Request;
             response: OkResponse;
         };
         bonus: {
@@ -306,7 +306,7 @@ export interface BackendApiTypeMap {
             params: {
                 id: number;
             };
-            body: SetBonusRequest;
+            body: SetBonus.Request;
             response: OkResponse;
         };
         byStudent: {
@@ -339,7 +339,7 @@ export interface BackendApiTypeMap {
         };
         create: {
             method: "POST";
-            body: CreateBooleanQRequest;
+            body: CreateBooleanQ.Request;
             response: OkIdResponse;
         };
         one: {
@@ -355,7 +355,7 @@ export interface BackendApiTypeMap {
             params: {
                 id: number;
             };
-            body: UpdateBooleanQRequest;
+            body: UpdateBooleanQ.Request;
             response: OkResponse;
         };
         delete: {
@@ -378,7 +378,7 @@ export interface BackendApiTypeMap {
             params: {
                 booleanqId: number;
             };
-            body: UpsertBooleanQAnswerRequest;
+            body: UpsertBooleanQAnswer.Request;
             response: OkResponse;
         };
         delete: {
@@ -444,7 +444,7 @@ export interface BackendApiTypeMap {
                 type: string;
                 id: number;
             };
-            body: UpdateCriterionFieldRequest;
+            body: UpdateCriterionField.Request;
             response: OkResponse;
         };
         delete: {
