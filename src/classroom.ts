@@ -1,44 +1,44 @@
+import type { Classroom, Question, Student, Test } from "@princio/bqool";
+
 /** Creates a new classroom */
+/** POST /classroom */
 export namespace ClassroomCreate {
 	export interface Request {
 		name: string;
 	}
 }
 
-/** GET /classes — list all classrooms */
+/** Lists all classrooms */
+/** GET /classroom */
 export namespace ClassroomList {
-	export interface Response {
-		id: number;
-		name: string;
-	}
+	export type Response = Classroom[];
 }
 
-/** GET /classes/:id — classroom detail with students and tests */
+/** Classroom detail with students and tests */
+/** GET /classroom/:id */
 export namespace ClassroomDetail {
-	export interface Query {
-		id: number;
-	}
-	export interface Response {
-		id: number;
-		name: string;
-		students: { id: number; name: string }[];
-		tests: { id: number; name: string; questions_count: number }[];
+	export interface Response extends Classroom {
+		students: Student[];
+		tests: (Test & { questions_count: number })[];
 	}
 }
 
-/** GET /dashboard — classroom summary with test/question tree */
+/** Classroom summary with test/question tree */
+/** GET /classroom/dashboard */
 export namespace ClassroomSummary {
-	export interface Query {
-		id: number;
-	}
-	export interface Response {
-		id: number;
-		name: string;
+	export type TestWithQuestion = Test & {
+		questions: Pick<Question, "id" | "name">[];
+	};
+	export type Response = (Classroom & {
 		students_count: number;
-		tests: {
-			id: number;
-			name: string;
-			questions: { id: number; name: string }[];
-		}[];
-	}
+		tests: TestWithQuestion[];
+	})[];
 }
+
+/** Deletes a classroom */
+/** DELETE /classroom/:id */
+export namespace ClassroomDelete {}
+
+/** Removes a student from a classroom */
+/** DELETE /classroom/:id/students/:studentId */
+export namespace ClassroomStudentRemove {}

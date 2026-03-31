@@ -1,4 +1,4 @@
-import { Student } from "@princio/bqool";
+import type { Student } from "@princio/bqool";
 import type { Question } from "./question";
 
 export interface NavAnswerSummary {

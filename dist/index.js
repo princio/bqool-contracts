@@ -20,6 +20,5 @@ __exportStar(require("./common"), exports);
 __exportStar(require("./nav"), exports);
 __exportStar(require("./question"), exports);
 __exportStar(require("./rubric"), exports);
-__exportStar(require("./rubric-draft"), exports);
 __exportStar(require("./student"), exports);
 __exportStar(require("./test"), exports);

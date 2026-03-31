@@ -1,67 +1,54 @@
-import type { Criterion } from "@princio/bqool";
-export type { BooleanQ, Criterion, } from "@princio/bqool";
-export interface RubricExportData {
-    question_id: string;
-    criteria: Criterion[];
-    students: string[];
-    answers: Record<string, string>;
-}
-/** Creates a new rubric concept criterion */
-export declare namespace RubricConceptCreate {
-    interface Request {
-        name: string;
-        definition: string;
-    }
-}
-/** Creates a new boolean question linked to a criterion */
-export declare namespace BooleanQCreate {
-    interface Request {
-        criterion_type: string;
-        criterion_id: number;
-        text: string;
-    }
-}
-/** Updates a boolean question's text */
-export declare namespace BooleanQUpdate {
-    interface Request {
-        text?: string;
-    }
-}
-/** Creates a new expression criterion */
-export declare namespace ExpressionCreate {
-    interface Request {
-        name: string;
-        type: string;
-    }
-}
-/** Creates a new code criterion */
-export declare namespace CodeCreate {
-    interface Request {
-        expression: string;
-        type: string;
-    }
-}
-/** Creates a new error criterion */
-export declare namespace ErrorCreate {
-    interface Request {
-        name: string;
-        description: string;
-    }
-}
-/** Updates a single field on a criterion */
-export declare namespace CriterionFieldUpdate {
-    interface Request {
-        field: string;
-        value: string | number;
+import type { Answer, BooleanQ, Classroom, Criterion, Question, Student } from "@princio/bqool";
+/** Lists concepts for a question */
+/** GET /rubric/concepts?question_id=:questionId */
+export declare namespace RubricCriteria {
+    interface Response {
+        criteria: {
+            criterion: Criterion;
+            question: Question;
+        };
     }
 }
 /** Creates a new criterion (generic, covers expression/code/error) */
+/** POST /rubric/expressions | POST /rubric/codes | POST /rubric/errors */
 export declare namespace CriterionCreate {
-    interface Request {
-        name?: string;
-        expression?: string;
-        severity?: number;
-        definition?: string;
-        description?: string;
+    type Request = Omit<Criterion, "id">;
+}
+/** Updates a single field on a criterion */
+/** PATCH /rubric/concepts/:id */
+export declare namespace CriterionUpdate {
+    type Request = Partial<Omit<Criterion, "id">>;
+}
+/** Lists boolean questions for a criterion */
+/** GET /rubric/booleanqs/:itemType/:itemId */
+export declare namespace CriterionBooleanQList {
+    interface Response {
+        criterion: Criterion;
+        booleanqs: BooleanQ[];
+    }
+}
+/** Creates a new boolean question linked to a criterion */
+/** POST /rubric/booleanqs */
+export declare namespace BooleanQCreate {
+    type Request = Omit<BooleanQ, "id">;
+}
+/** Updates a boolean question's text */
+/** PATCH /rubric/booleanqs/:id */
+export declare namespace BooleanQUpdate {
+    type Request = Partial<Omit<BooleanQ, "id">>;
+}
+/** Deletes a boolean question */
+/** DELETE /rubric/booleanqs/:id */
+export declare namespace BooleanQDelete { }
+/** Gets full rubric detail for a question */
+/** GET /rubric/rubric/detail?question_id=:questionId */
+export declare namespace RubricDetail {
+    interface Response {
+        question: Question;
+        students: {
+            student: Student;
+            classroom: Classroom;
+            answer: Answer;
+        }[];
     }
 }

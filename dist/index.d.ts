@@ -4,6 +4,5 @@ export * from "./common";
 export * from "./nav";
 export * from "./question";
 export * from "./rubric";
-export * from "./rubric-draft";
 export * from "./student";
 export * from "./test";
