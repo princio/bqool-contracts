@@ -9,16 +9,7 @@ import type {
 	Test,
 } from "@princio/bqool";
 
-// ── Response-only namespaces ───────────────────────────────────────
-
-/** Initializes answer boolean-q evaluations for a student-question pair */
-/** POST /boolean-answers/init?answer_id=:answerId */
-export namespace AnswerInit {
-	export interface Response {
-		ok: boolean;
-		created: { criteria: number; boolean_answers: number };
-	}
-}
+// ── AnswerController (prefix: answers) ────────────────────────────
 
 /** Creates a new penmark annotation on an answer */
 /** POST /answers/:id/penmark */
@@ -38,7 +29,7 @@ export namespace AnswerToggleProtection {
 	}
 	export interface Response {
 		ok: boolean;
-		protected: number;
+		is_locked: boolean;
 	}
 }
 
@@ -59,7 +50,7 @@ export namespace AnswerGetDetail {
 	export interface Response extends Answer {
 		question: Question;
 		student: Student;
-		correction: Derived.AnswerCorrection;
+		criteria: Derived.AnswerCriterion[];
 	}
 }
 
@@ -85,7 +76,7 @@ export namespace AnswerByTest {
 }
 
 /** Updates an answer's text or blank status */
-/** PUT /students/:id/questions/:questionId/answer */
+/** PUT /answers/by-student?question_id=:questionId&student_id=:studentId */
 export namespace AnswerUpdate {
 	export interface Request {
 		text?: string;
@@ -125,21 +116,3 @@ export namespace AnswerSetCoherence {
 		rationale?: string;
 	}
 }
-
-/** Upserts a boolean-question answer with optional citations and rationale */
-/** PATCH /boolean-answers/:booleanqId?answer_id=:answerId */
-export namespace BooleanQAnswerUpsert {
-	export interface Request {
-		answer?: boolean;
-		citations?: string[];
-		rationale?: string;
-	}
-}
-
-/** Marks a boolean-question answer as reviewed */
-/** POST /boolean-answers/:booleanqId/review?answer_id=:answerId */
-export namespace BooleanQAnswerReview {}
-
-/** Resets the review count for a boolean-question answer */
-/** DELETE /boolean-answers/:booleanqId/review?answer_id=:answerId */
-export namespace BooleanQAnswerReviewReset {}

@@ -1,6 +1,7 @@
 import type {
 	Classroom,
 	CriterionCategory,
+	GradeParams,
 	Question,
 	Test,
 } from "@princio/bqool";
@@ -35,9 +36,9 @@ export namespace QuestionGetDetail {
 }
 
 /** Creates a new question, optionally linked to a test */
-/** POST /questions */
+/** POST /questions?test_id=:testId */
 export namespace QuestionCreate {
-	export type Request = Omit<Question, "id">;
+	export type Request = Partial<Omit<Question, "id">>;
 }
 
 /** Updates an existing question's fields */
@@ -49,7 +50,7 @@ export namespace QuestionUpdate {
 /** Gets the grade parameters for a question */
 /** GET /questions/:id/grade-params */
 export namespace QuestionGetGradeParams {
-	export type Response = Record<string, unknown>;
+	export type Response = GradeParams | null;
 }
 
 /** Updates the grade parameters for a question */
@@ -59,7 +60,3 @@ export namespace QuestionSetGradeParams {
 		params_json: string;
 	}
 }
-
-// ── Flat type aliases (used by backend controllers) ────────────────
-
-export type UpdateQuestionRequest = QuestionUpdate.Request;

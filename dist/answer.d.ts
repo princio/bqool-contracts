@@ -1,15 +1,4 @@
 import type { Answer, AnswerPenmark, Classroom, Derived, Question, Student, StudentTest, Test } from "@princio/bqool";
-/** Initializes answer boolean-q evaluations for a student-question pair */
-/** POST /boolean-answers/init?answer_id=:answerId */
-export declare namespace AnswerInit {
-    interface Response {
-        ok: boolean;
-        created: {
-            criteria: number;
-            boolean_answers: number;
-        };
-    }
-}
 /** Creates a new penmark annotation on an answer */
 /** POST /answers/:id/penmark */
 export declare namespace PenmarkCreate {
@@ -28,7 +17,7 @@ export declare namespace AnswerToggleProtection {
     }
     interface Response {
         ok: boolean;
-        protected: number;
+        is_locked: boolean;
     }
 }
 /** Creates answers in batch for a test */
@@ -45,7 +34,7 @@ export declare namespace AnswerGetDetail {
     interface Response extends Answer {
         question: Question;
         student: Student;
-        correction: Derived.AnswerCorrection;
+        criteria: Derived.AnswerCriterion[];
     }
 }
 /** Deletes an answer */
@@ -67,7 +56,7 @@ export declare namespace AnswerByTest {
     }
 }
 /** Updates an answer's text or blank status */
-/** PUT /students/:id/questions/:questionId/answer */
+/** PUT /answers/by-student?question_id=:questionId&student_id=:studentId */
 export declare namespace AnswerUpdate {
     interface Request {
         text?: string;
@@ -103,18 +92,3 @@ export declare namespace AnswerSetCoherence {
         rationale?: string;
     }
 }
-/** Upserts a boolean-question answer with optional citations and rationale */
-/** PATCH /boolean-answers/:booleanqId?answer_id=:answerId */
-export declare namespace BooleanQAnswerUpsert {
-    interface Request {
-        answer?: boolean;
-        citations?: string[];
-        rationale?: string;
-    }
-}
-/** Marks a boolean-question answer as reviewed */
-/** POST /boolean-answers/:booleanqId/review?answer_id=:answerId */
-export declare namespace BooleanQAnswerReview { }
-/** Resets the review count for a boolean-question answer */
-/** DELETE /boolean-answers/:booleanqId/review?answer_id=:answerId */
-export declare namespace BooleanQAnswerReviewReset { }

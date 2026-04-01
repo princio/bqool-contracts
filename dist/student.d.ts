@@ -7,11 +7,6 @@ export declare namespace StudentGet {
         classroom: Classroom;
     }
 }
-/** Adds a student to a classroom */
-/** POST /classroom/:id/students */
-export declare namespace StudentAdd {
-    type Request = Omit<Student, "id">;
-}
 /** Updates a student's name */
 /** PUT /students/:id */
 export declare namespace StudentUpdate {

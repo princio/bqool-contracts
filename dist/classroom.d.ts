@@ -1,4 +1,9 @@
 import type { Classroom, Question, Student, Test } from "@princio/bqool";
+/** Adds a student to a classroom */
+/** POST /classroom/:id/students */
+export declare namespace StudentAdd {
+    type Request = Omit<Student, "id">;
+}
 /** Creates a new classroom */
 /** POST /classroom */
 export declare namespace ClassroomCreate {

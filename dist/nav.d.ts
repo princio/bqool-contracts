@@ -3,7 +3,6 @@ import type { Question } from "./question";
 export interface NavAnswerSummary {
     id: number;
     grade: number | null;
-    workdir: string;
 }
 export interface SiblingScore {
     grade: number | null;
@@ -26,7 +25,7 @@ export interface NavTestContext {
     questions: {
         id: number;
         name: string;
-        number: number | null;
+        position: number | null;
         has_answer: boolean;
         answer_summary: {
             grade: number | null;
@@ -44,7 +43,7 @@ export interface NavData {
 }
 export interface AnswerData {
     text: string | null;
-    isblank: boolean;
+    is_blank: boolean;
     student: Student;
     question: Question;
     siblings: Student[];

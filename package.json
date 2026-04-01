@@ -7,7 +7,7 @@
 		"build": "tsc",
 		"check": "biome check .",
 		"format": "biome check --write .",
-		"update-princio": "npm update --no-audit --no-fund @princio/bqool @princio/bqool-runner-types"
+		"update-bqool": "npm update --no-audit --no-fund @princio/bqool @princio/bqool-runner-types"
 	},
 	"dependencies": {
 		"@princio/bqool": "file:../bqool",

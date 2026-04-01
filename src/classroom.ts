@@ -1,5 +1,13 @@
 import type { Classroom, Question, Student, Test } from "@princio/bqool";
 
+// ── ClassroomController (prefix: classroom) ───────────────────────
+
+/** Adds a student to a classroom */
+/** POST /classroom/:id/students */
+export namespace StudentAdd {
+	export type Request = Omit<Student, "id">;
+}
+
 /** Creates a new classroom */
 /** POST /classroom */
 export namespace ClassroomCreate {

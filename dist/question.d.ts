@@ -1,4 +1,4 @@
-import type { Classroom, CriterionCategory, Question, Test } from "@princio/bqool";
+import type { Classroom, CriterionCategory, GradeParams, Question, Test } from "@princio/bqool";
 export type { Question } from "@princio/bqool";
 export interface QuestionDetail {
     question: Question;
@@ -26,9 +26,9 @@ export declare namespace QuestionGetDetail {
     type Response = QuestionDetail;
 }
 /** Creates a new question, optionally linked to a test */
-/** POST /questions */
+/** POST /questions?test_id=:testId */
 export declare namespace QuestionCreate {
-    type Request = Omit<Question, "id">;
+    type Request = Partial<Omit<Question, "id">>;
 }
 /** Updates an existing question's fields */
 /** PUT /questions/:id */
@@ -38,7 +38,7 @@ export declare namespace QuestionUpdate {
 /** Gets the grade parameters for a question */
 /** GET /questions/:id/grade-params */
 export declare namespace QuestionGetGradeParams {
-    type Response = Record<string, unknown>;
+    type Response = GradeParams | null;
 }
 /** Updates the grade parameters for a question */
 /** PUT /questions/:id/grade-params */
@@ -47,4 +47,3 @@ export declare namespace QuestionSetGradeParams {
         params_json: string;
     }
 }
-export type UpdateQuestionRequest = QuestionUpdate.Request;

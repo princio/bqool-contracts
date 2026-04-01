@@ -17,8 +17,6 @@ export interface StudentTestData {
 		question_name: string;
 		score: null;
 	}[];
-	media: null;
-	fascia: null;
 }
 
 // ── Namespaces ─────────────────────────────────────────────────────
@@ -45,7 +43,7 @@ export namespace TestRisultatiData {
 					{
 						grade: number | null;
 						grade_bonus: number | null;
-						isblank: boolean;
+						is_blank: boolean;
 						word_count: number;
 						status: "blank" | "filled" | "to_fill";
 						booleanq_yes?: number;
@@ -87,11 +85,11 @@ export namespace TestAddQuestion {
 	}
 }
 
-/** Updates the question number within a test */
+/** Updates the question position within a test */
 /** PUT /test/:id/questions/:questionId */
-export namespace TestQuestionNumberUpdate {
+export namespace TestQuestionPositionUpdate {
 	export interface Request {
-		number: number | null;
+		position: number | null;
 	}
 }
 

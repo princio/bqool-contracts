@@ -1,5 +1,3 @@
-// ── Row types ──────────────────────────────────────────────────────
-
 import type {
 	Classroom,
 	Question,
@@ -8,7 +6,7 @@ import type {
 	Test,
 } from "@princio/bqool";
 
-// ── Namespaces ─────────────────────────────────────────────────────
+// ── StudentController (prefix: /students) ─────────────────────────
 
 /** Gets a student detail */
 /** GET /students/:id */
@@ -17,12 +15,6 @@ export namespace StudentGet {
 		student: Student;
 		classroom: Classroom;
 	}
-}
-
-/** Adds a student to a classroom */
-/** POST /classroom/:id/students */
-export namespace StudentAdd {
-	export type Request = Omit<Student, "id">;
 }
 
 /** Updates a student's name */

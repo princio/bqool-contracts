@@ -18,8 +18,6 @@ export interface StudentTestData {
         question_name: string;
         score: null;
     }[];
-    media: null;
-    fascia: null;
 }
 /** Lists all tests with classroom info */
 /** GET /test */
@@ -38,7 +36,7 @@ export declare namespace TestRisultatiData {
             scores: Record<number, {
                 grade: number | null;
                 grade_bonus: number | null;
-                isblank: boolean;
+                is_blank: boolean;
                 word_count: number;
                 status: "blank" | "filled" | "to_fill";
                 booleanq_yes?: number;
@@ -74,11 +72,11 @@ export declare namespace TestAddQuestion {
         copy_rubric?: boolean;
     }
 }
-/** Updates the question number within a test */
+/** Updates the question position within a test */
 /** PUT /test/:id/questions/:questionId */
-export declare namespace TestQuestionNumberUpdate {
+export declare namespace TestQuestionPositionUpdate {
     interface Request {
-        number: number | null;
+        position: number | null;
     }
 }
 /** Gets a test by id */
