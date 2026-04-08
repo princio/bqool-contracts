@@ -8,7 +8,6 @@ import type {
 	Test,
 } from "@princio/bqool";
 import type { OkIdResponse, OkResponse } from "./common";
-import { AnswerCriteriaStats } from "./answer";
 
 export type { Question } from "@princio/bqool";
 
@@ -20,7 +19,6 @@ export interface QuestionDetail {
 		number: number;
 		blank: number;
 		not_typed: number;
-		criteria_stats: AnswerCriteriaStats;
 	}
 }
 // ── Namespaces ─────────────────────────────────────────────────────
@@ -59,7 +57,6 @@ export interface QuestionListRow extends Question {
 		number: number;
 		blank: number;
 		not_typed: number;
-		criteria_stats: AnswerCriteriaStats;
 	}
 }
 
@@ -74,7 +71,6 @@ export interface QuestionStudentSummary {
 	student: Student;
 	classroom: Classroom;
 	answer: Answer;
-	criteria_stats: AnswerCriteriaStats;
 }
 
 /** Gets question detail with per-student stats (current backend shape) */

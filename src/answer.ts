@@ -1,8 +1,8 @@
 import type {
 	Answer,
-	AnswerPenmark,
 	Classroom,
 	Derived,
+	Penmark,
 	Question,
 	Student,
 	StudentTest,
@@ -11,36 +11,16 @@ import type {
 import type { OkResponse } from "./common";
 
 
-export interface AnswerCriteriaStats {
-	booleanqs: {
-		answered: number;
-		total: number;
-	}
-	concepts: Record<'required' | 'not_required', {
-		present: number;
-		completeness: number; // number of booleanq answered over total PER CONCEPT
-		total: number;
-	}>;
-	expressions: {
-		positive: number;
-		negative: number;
-	}
-	codes: {
-		positive: number;
-		negative: number;
-	}
-	errors: number;
-}
-
 // ── AnswerController (prefix: answers) ────────────────────────────
+
 
 /** Creates a new penmark annotation on an answer */
 /** POST /answers/:id/penmark */
 export namespace PenmarkCreate {
-	export interface Request extends Exclude<AnswerPenmark, "id"> {}
+	export interface Request extends Exclude<Penmark, "id"> {}
 	export interface Response {
 		ok: boolean;
-		penmark: AnswerPenmark;
+		penmark: Penmark;
 	}
 }
 
@@ -86,7 +66,7 @@ export namespace AnswerDelete {
 /** Gets an answer by student and question */
 /** GET /answers/by-student?question_id=:questionId&student_id=:studentId */
 export namespace AnswerByStudent {
-	export type Response = Derived.AnswerCorrection | null;
+	export type Response = Derived.AnswerCorrected | null;
 }
 
 /** Gets all answers for a student in a test */
@@ -96,7 +76,7 @@ export namespace AnswerByTest {
 		test: Test;
 		student: Student;
 		classroom: Classroom;
-		answers: Derived.AnswerCorrection[];
+		answers: Derived.AnswerCorrected[];
 	}
 }
 
