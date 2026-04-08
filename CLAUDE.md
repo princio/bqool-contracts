@@ -4,8 +4,12 @@
 
 All request and response types must be **explicitly defined** using TypeScript namespaces to group `Request` and `Response` types (e.g., `Foo.Request`, `Foo.Response`). Do not use inline or anonymous types for API request/response payloads.
 
-## Directory Traversal Restrictions
+## Editing types
 
-When exploring files and directories outside of this project, traversal is **only permitted** for the `bqool-runner-types` repository (located at `../bqool-runner-types` relative to this directory).
+This package is a contract, not an implementation. Do not edit a type here just because a backend or frontend consumer disagrees with it — the consumer is wrong.
 
-Do **not** read, explore, or traverse any other sibling directories, parent directories, or unrelated repositories without explicit user instruction.
+The only reasons to edit a type here:
+1. The upstream `bqool` domain type changed and this file needs to re-align.
+2. The API shape itself is being redesigned (and the user is explicitly asking for that).
+
+If a backend service returns something that doesn't match a type in this package, fix the service.
