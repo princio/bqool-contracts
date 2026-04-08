@@ -27,29 +27,22 @@ export namespace TestList {
 	export interface Request extends Test {
 		classroom: Classroom;
 	}
+	export type Response = Request[];
 }
 
 /** Gets test results with all student answers */
 /** GET /test/:id/results */
-export namespace TestRisultatiData {
+export namespace TestAnswers {
 	export interface Response {
 		test: Test;
 		questions: Question[];
-		answers: Answer &
-			Student &
-			{
-				scores: Record<
-					number,
-					{
-						grade: number | null;
-						grade_bonus: number | null;
-						is_blank: boolean;
-						word_count: number;
-						status: "blank" | "filled" | "to_fill";
-						booleanq_yes?: number;
-					}
-				>;
-			}[];
+		answers: ({
+			answer: Answer;
+			student: Student;
+			stats: {
+				booleanq_yes?: number;
+			},
+		})[];
 	}
 }
 
@@ -66,7 +59,7 @@ export namespace TestCreate {
 /** Updates test fields */
 /** PUT /test/:id */
 export namespace TestUpdate {
-	export type Request = Test;
+	export type Request = Omit<Test, 'id'>;
 	export type Response = OkResponse;
 }
 
@@ -83,6 +76,7 @@ export namespace TestAddQuestion {
 		question_id: number;
 		copy_rubric?: boolean;
 	}
+	export type Response = OkIdResponse;
 }
 
 /** Updates the question position within a test */
@@ -91,6 +85,7 @@ export namespace TestQuestionPositionUpdate {
 	export interface Request {
 		position: number | null;
 	}
+	export type Response = OkResponse;
 }
 
 /** Gets a test by id */
@@ -119,7 +114,9 @@ export namespace TestGetDetail {
 
 /** Removes a question from a test */
 /** DELETE /test/:id/questions/:questionId */
-export namespace TestRemoveQuestion {}
+export namespace TestRemoveQuestion {
+	export type Response = OkResponse;
+}
 
 /** Upserts a student's grade for a test */
 /** PATCH /test/:id/students/:studentId/grade */
@@ -127,6 +124,7 @@ export namespace TestStudentGradeUpsert {
 	export interface Request {
 		grade: number | null;
 	}
+	export type Response = OkResponse;
 }
 
 /** Gets a student's summary within a test */
