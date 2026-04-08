@@ -16,7 +16,7 @@ export interface AnswerCriteriaStats {
 		answered: number;
 		total: number;
 	}
-	concepts: Record<'require' | 'not-required', {
+	concepts: Record<'required' | 'not_required', {
 		present: number;
 		completeness: number; // number of booleanq answered over total PER CONCEPT
 		total: number;
