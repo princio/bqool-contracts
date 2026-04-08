@@ -4,6 +4,7 @@ export * from "./booleanq";
 export * from "./classroom";
 export * from "./common";
 export * from "./criterion";
+export * from "./pdf";
 export * from "./question";
 export * from "./rubric";
 export * from "./student";

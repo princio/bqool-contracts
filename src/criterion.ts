@@ -1,4 +1,5 @@
 import type { BooleanQ, Criterion } from "@princio/bqool";
+import type { OkIdResponse, OkResponse } from "./common";
 
 // ── CriterionController (prefix: criterion/) ──────────────────────
 
@@ -14,12 +15,20 @@ export namespace RubricCriteria {
 /** POST /criterion/questions/:questionId/criteria */
 export namespace CriterionCreate {
 	export type Request = Omit<Criterion, "id">;
+	export type Response = OkIdResponse;
 }
 
-/** Updates a single field on a criterion */
+/** Updates fields on a criterion */
 /** PATCH /criterion/criteria/:id */
 export namespace CriterionUpdate {
 	export type Request = Partial<Omit<Criterion, "id">>;
+	export type Response = OkResponse;
+}
+
+/** Deletes a criterion */
+/** DELETE /criterion/criteria/:id */
+export namespace CriterionDelete {
+	export type Response = OkResponse;
 }
 
 /** Gets a criterion with its boolean questions */
