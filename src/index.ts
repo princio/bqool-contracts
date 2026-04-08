@@ -1,5 +1,5 @@
 export * from "./answer";
-export * from "./boolean-answer";
+export * from "./booleanq-answer";
 export * from "./booleanq";
 export * from "./classroom";
 export * from "./common";
