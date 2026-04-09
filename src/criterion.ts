@@ -4,9 +4,9 @@ import type { OkIdResponse, OkResponse } from "./common";
 // ── CriterionController (prefix: criterion/) ──────────────────────
 
 /** Lists criteria for a question */
-/** GET /criterion/criteria?question_id=:questionId */
+/** GET /criterion/list?question_id=:questionId */
 /** @since 0.1.1 */
-export namespace RubricCriteria {
+export namespace CriterionList {
 	export type Response = Criterion[];
 }
 

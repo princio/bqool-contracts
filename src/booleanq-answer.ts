@@ -5,8 +5,8 @@ import type { OkResponse } from "./common";
 
 /** Initializes answer boolean-q evaluations for a student-question pair */
 /** POST /booleanq-answer/init?answer_id=:answerId */
-/** @since 0.1.0 */
-export namespace AnswerInit {
+/** @since 0.1.1 */
+export namespace BooleanQAnswerInit {
 	export interface Response {
 		ok: boolean;
 		created: { criteria: number; booleanq_answers: number };

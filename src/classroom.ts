@@ -5,8 +5,8 @@ import type { OkResponse } from "./common";
 
 /** Adds a student to a classroom */
 /** POST /classroom/:id/student */
-/** @since 0.1.0 */
-export namespace StudentAdd {
+/** @since 0.1.1 */
+export namespace ClassroomStudentAdd {
 	export type Request = Omit<Student, "id">;
 }
 

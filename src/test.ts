@@ -8,17 +8,6 @@ import type {
 } from "@princio/bqool";
 import type { OkIdResponse, OkResponse } from "./common";
 
-export interface StudentTestData {
-	test: { id: number; name: string };
-	classroom: { id: number; name: string };
-	student: { id: number; name: string };
-	questions: {
-		question_id: number;
-		question_name: string;
-		score: null;
-	}[];
-}
-
 // ── Namespaces ─────────────────────────────────────────────────────
 
 /** Lists all tests with classroom info */
@@ -142,5 +131,14 @@ export namespace TestStudentGradeUpsert {
 /** GET /test/tests/:id/student/:studentId */
 /** @since 0.1.0 */
 export namespace TestStudentSummary {
-	export type Response = StudentTestData;
+	export interface Response {
+		test: { id: number; name: string };
+		classroom: { id: number; name: string };
+		student: { id: number; name: string };
+		questions: {
+			question_id: number;
+			question_name: string;
+			score: null;
+		}[];
+	}
 }
