@@ -22,8 +22,6 @@ Every `export namespace` has comment tags tracking its lifecycle:
 /** Description */
 /** METHOD /path */
 /** @since 0.2.0 */
-/** @backend not-implemented */
-/** @frontend not-implemented */
 export namespace ExampleEndpoint { ... }
 ```
 

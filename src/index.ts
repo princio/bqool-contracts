@@ -6,6 +6,7 @@ export * from "./common";
 export * from "./criterion";
 export * from "./grid";
 export * from "./pdf";
+export * from "./penmark";
 export * from "./question";
 export * from "./rubric";
 export * from "./student";

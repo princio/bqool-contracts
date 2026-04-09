@@ -27,8 +27,6 @@ export interface QuestionDetail {
 /** Lists all questions */
 /** GET /question/all */
 /** @since 0.1.0 */
-/** @backend implemented */
-/** @frontend implemented */
 export namespace QuestionList {
 	export interface Response {
 		questions: QuestionDetail[];
@@ -38,8 +36,6 @@ export namespace QuestionList {
 /** Gets a single question detail */
 /** GET /question/:id */
 /** @since 0.1.0 */
-/** @backend implemented */
-/** @frontend implemented */
 export namespace QuestionGetDetail {
 	export type Response = QuestionDetail;
 }
@@ -47,8 +43,6 @@ export namespace QuestionGetDetail {
 /** Gets a single question (bare domain object) */
 /** GET /question/:id */
 /** @since 0.1.0 */
-/** @backend implemented */
-/** @frontend implemented */
 export namespace QuestionGet {
 	export type Response = Question;
 }
@@ -75,8 +69,6 @@ export interface QuestionListRow extends Question {
 /** Lists all questions (current backend shape) */
 /** GET /question */
 /** @since 0.1.0 */
-/** @backend implemented */
-/** @frontend implemented */
 export namespace QuestionListRows {
 	export type Response = QuestionListRow[];
 }
@@ -91,8 +83,6 @@ export interface QuestionStudentSummary {
 /** Gets question detail with per-student stats (current backend shape) */
 /** GET /question/:id/summary */
 /** @since 0.1.0 */
-/** @backend implemented */
-/** @frontend implemented */
 export namespace QuestionSummary {
 	export interface Response {
 		usages: QuestionStudentSummary[];
@@ -102,8 +92,6 @@ export namespace QuestionSummary {
 /** Creates a new question, optionally linked to a test */
 /** POST /question?test_id=:testId */
 /** @since 0.1.0 */
-/** @backend implemented */
-/** @frontend implemented */
 export namespace QuestionCreate {
 	export type Request = Partial<Omit<Question, "id">>;
 	export type Response = OkIdResponse;
@@ -112,8 +100,6 @@ export namespace QuestionCreate {
 /** Updates an existing question's fields */
 /** PUT /question/:id */
 /** @since 0.1.0 */
-/** @backend implemented */
-/** @frontend implemented */
 export namespace QuestionUpdate {
 	export type Request = Partial<Omit<Question, "id">>;
 	export type Response = OkResponse;
@@ -122,8 +108,6 @@ export namespace QuestionUpdate {
 /** Deletes a question */
 /** DELETE /question/:id */
 /** @since 0.2.0 */
-/** @backend not-implemented */
-/** @frontend not-implemented */
 export namespace QuestionDelete {
 	export type Response = OkResponse;
 }
@@ -131,8 +115,6 @@ export namespace QuestionDelete {
 /** Gets the grade parameters for a question */
 /** GET /question/:id/grade-params */
 /** @since 0.1.0 */
-/** @backend implemented */
-/** @frontend implemented */
 export namespace QuestionGetGradeParams {
 	export type Response = GradeParams | null;
 }
@@ -140,8 +122,6 @@ export namespace QuestionGetGradeParams {
 /** Updates the grade parameters for a question */
 /** PUT /question/:id/grade-params */
 /** @since 0.1.0 */
-/** @backend implemented */
-/** @frontend implemented */
 export namespace QuestionSetGradeParams {
 	export interface Request {
 		params_json: string;

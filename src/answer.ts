@@ -2,7 +2,6 @@ import type {
 	Answer,
 	Classroom,
 	Derived,
-	Penmark,
 	Question,
 	Student,
 	StudentTest,
@@ -13,19 +12,15 @@ import type { OkIdResponse, OkResponse } from "./common";
 // ── AnswerController (prefix: answers) ────────────────────────────
 
 /** Lists all answers */
-/** GET /answers */
+/** GET /answer */
 /** @since 0.2.0 */
-/** @backend not-implemented */
-/** @frontend not-implemented */
 export namespace AnswerList {
 	export type Response = AnswerDetail[];
 }
 
 /** Creates a single answer */
-/** POST /answers */
+/** POST /answer */
 /** @since 0.2.0 */
-/** @backend not-implemented */
-/** @frontend not-implemented */
 export namespace AnswerCreate {
 	export interface Request {
 		student_id: number;
@@ -36,52 +31,9 @@ export namespace AnswerCreate {
 	export type Response = OkIdResponse;
 }
 
-/** Creates a new penmark annotation on an answer */
-/** POST /answers/:id/penmark */
-/** @since 0.1.0 */
-/** @backend implemented */
-/** @frontend implemented */
-export namespace PenmarkCreate {
-	export interface Request extends Exclude<Penmark, "id"> {}
-	export interface Response {
-		ok: boolean;
-		penmark: Penmark;
-	}
-}
-
-/** Lists penmarks for an answer */
-/** GET /answers/:id/penmarks */
-/** @since 0.2.0 */
-/** @backend not-implemented */
-/** @frontend not-implemented */
-export namespace PenmarkList {
-	export type Response = Penmark[];
-}
-
-/** Updates a penmark annotation */
-/** PATCH /answers/:answerId/penmarks/:penmarkId */
-/** @since 0.2.0 */
-/** @backend not-implemented */
-/** @frontend not-implemented */
-export namespace PenmarkUpdate {
-	export type Request = Partial<Omit<Penmark, "id">>;
-	export type Response = OkResponse;
-}
-
-/** Deletes a penmark annotation */
-/** DELETE /answers/:answerId/penmarks/:penmarkId */
-/** @since 0.2.0 */
-/** @backend not-implemented */
-/** @frontend not-implemented */
-export namespace PenmarkDelete {
-	export type Response = OkResponse;
-}
-
 /** Toggles the protection status of an answer */
-/** PATCH /answers/:id/protected */
+/** PATCH /answer/:id/protected */
 /** @since 0.1.0 */
-/** @backend implemented */
-/** @frontend implemented */
 export namespace AnswerToggleProtection {
 	export interface Request {
 		protected: boolean;
@@ -93,10 +45,8 @@ export namespace AnswerToggleProtection {
 }
 
 /** Creates answers in batch for a test */
-/** POST /answers/batch */
+/** POST /answer/batch */
 /** @since 0.1.0 */
-/** @backend implemented */
-/** @frontend implemented */
 export namespace AnswerBatchCreate {
 	export interface Response {
 		ok: boolean;
@@ -107,10 +57,8 @@ export namespace AnswerBatchCreate {
 // ── Request/Response namespaces ─────────────────────────────────────
 
 /** Gets full answer detail with correction data */
-/** GET /answers/:id */
+/** GET /answer/:id */
 /** @since 0.1.0 */
-/** @backend implemented */
-/** @frontend implemented */
 export namespace AnswerGetDetail {
 	export interface Response extends Answer {
 		question: Question;
@@ -120,28 +68,22 @@ export namespace AnswerGetDetail {
 }
 
 /** Deletes an answer */
-/** DELETE /answers/:id */
+/** DELETE /answer/:id */
 /** @since 0.1.0 */
-/** @backend implemented */
-/** @frontend implemented */
 export namespace AnswerDelete {
 	export type Response = OkResponse;
 }
 
 /** Gets an answer by student and question */
-/** GET /answers/by-student?question_id=:questionId&student_id=:studentId */
+/** GET /answer/by-student?question_id=:questionId&student_id=:studentId */
 /** @since 0.1.0 */
-/** @backend implemented */
-/** @frontend implemented */
 export namespace AnswerByStudent {
 	export type Response = Derived.AnswerCorrected | null;
 }
 
 /** Gets all answers for a student in a test */
-/** GET /answers/by-test?student_id=:studentId&test_id=:testId */
+/** GET /answer/by-test?student_id=:studentId&test_id=:testId */
 /** @since 0.1.0 */
-/** @backend implemented */
-/** @frontend implemented */
 export namespace AnswerByTest {
 	export interface Response extends StudentTest {
 		test: Test;
@@ -158,7 +100,7 @@ export namespace AnswerByTest {
 // richer shapes below (flat answer detail, per-question wrapper). Backend
 // controllers are typed against these.
 
-/** Flat answer detail returned by GET /answers/:id and GET /answers/by-student */
+/** Flat answer detail returned by GET /answer/:id and GET /answer/by-student */
 export interface AnswerDetail extends Answer {
 	question: Question;
 	student: Student;
@@ -166,28 +108,22 @@ export interface AnswerDetail extends Answer {
 }
 
 /** Gets full answer detail (current backend shape) */
-/** GET /answers/:id */
+/** GET /answer/:id */
 /** @since 0.1.0 */
-/** @backend implemented */
-/** @frontend implemented */
 export namespace AnswerDetailById {
 	export type Response = AnswerDetail;
 }
 
 /** Gets an answer by student and question (current backend shape) */
-/** GET /answers/by-student?question_id=:questionId&student_id=:studentId */
+/** GET /answer/by-student?question_id=:questionId&student_id=:studentId */
 /** @since 0.1.0 */
-/** @backend implemented */
-/** @frontend implemented */
 export namespace AnswerDetailByStudent {
 	export type Response = AnswerDetail | null;
 }
 
 /** Gets a student's answers for a full test (current backend shape) */
-/** GET /answers/by-test?student_id=:studentId&test_id=:testId */
+/** GET /answer/by-test?student_id=:studentId&test_id=:testId */
 /** @since 0.1.0 */
-/** @backend implemented */
-/** @frontend implemented */
 export namespace AnswerByTestPage {
 	export interface Response {
 		test: Test;
@@ -200,10 +136,8 @@ export namespace AnswerByTestPage {
 }
 
 /** Updates an answer's text or blank status */
-/** PUT /answers/by-student?question_id=:questionId&student_id=:studentId */
+/** PUT /answer/by-student?question_id=:questionId&student_id=:studentId */
 /** @since 0.1.0 */
-/** @backend implemented */
-/** @frontend implemented */
 export namespace AnswerUpdate {
 	export interface Request {
 		text?: string;
@@ -213,10 +147,8 @@ export namespace AnswerUpdate {
 }
 
 /** Sets the grade for an answer */
-/** PATCH /answers/:id/grade */
+/** PATCH /answer/:id/grade */
 /** @since 0.1.0 */
-/** @backend implemented */
-/** @frontend implemented */
 export namespace AnswerSetGrade {
 	export interface Request {
 		grade: number;
@@ -225,10 +157,8 @@ export namespace AnswerSetGrade {
 }
 
 /** Sets the bonus for an answer */
-/** PATCH /answers/:id/bonus */
+/** PATCH /answer/:id/bonus */
 /** @since 0.1.0 */
-/** @backend implemented */
-/** @frontend implemented */
 export namespace AnswerSetBonus {
 	export interface Request {
 		bonus: number | null;
@@ -237,10 +167,8 @@ export namespace AnswerSetBonus {
 }
 
 /** Updates the grade rationale for an answer */
-/** PATCH /answers/:id/grade_rationale */
+/** PATCH /answer/:id/grade_rationale */
 /** @since 0.1.0 */
-/** @backend implemented */
-/** @frontend implemented */
 export namespace AnswerSetGradeRationale {
 	export interface Request {
 		grade_rationale: string;
@@ -249,10 +177,8 @@ export namespace AnswerSetGradeRationale {
 }
 
 /** Updates the coherence assessment for an answer */
-/** PATCH /answers/:id/coherence */
+/** PATCH /answer/:id/coherence */
 /** @since 0.1.0 */
-/** @backend implemented */
-/** @frontend implemented */
 export namespace AnswerSetCoherence {
 	export interface Request {
 		level?: number;

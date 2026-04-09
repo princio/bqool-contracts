@@ -4,19 +4,15 @@ import type { OkIdResponse, OkResponse } from "./common";
 // ── StudentTestController (prefix: student-tests/) ──────────────
 
 /** Lists student-tests for a given test */
-/** GET /student-tests?test_id=:testId */
+/** GET /student-test?test_id=:testId */
 /** @since 0.2.0 */
-/** @backend not-implemented */
-/** @frontend not-implemented */
 export namespace StudentTestList {
 	export type Response = (StudentTest & { student: Student })[];
 }
 
 /** Gets a student-test by id */
-/** GET /student-tests/:id */
+/** GET /student-test/:id */
 /** @since 0.2.0 */
-/** @backend not-implemented */
-/** @frontend not-implemented */
 export namespace StudentTestGet {
 	export interface Response extends StudentTest {
 		student: Student;
@@ -25,10 +21,8 @@ export namespace StudentTestGet {
 }
 
 /** Creates a new student-test record */
-/** POST /student-tests */
+/** POST /student-test */
 /** @since 0.2.0 */
-/** @backend not-implemented */
-/** @frontend not-implemented */
 export namespace StudentTestCreate {
 	export interface Request {
 		student_id: number;
@@ -38,20 +32,16 @@ export namespace StudentTestCreate {
 }
 
 /** Updates a student-test record */
-/** PUT /student-tests/:id */
+/** PUT /student-test/:id */
 /** @since 0.2.0 */
-/** @backend not-implemented */
-/** @frontend not-implemented */
 export namespace StudentTestUpdate {
 	export type Request = Partial<Omit<StudentTest, "id">>;
 	export type Response = OkResponse;
 }
 
 /** Deletes a student-test record */
-/** DELETE /student-tests/:id */
+/** DELETE /student-test/:id */
 /** @since 0.2.0 */
-/** @backend not-implemented */
-/** @frontend not-implemented */
 export namespace StudentTestDelete {
 	export type Response = OkResponse;
 }
