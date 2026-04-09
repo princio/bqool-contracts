@@ -6,12 +6,18 @@
 
 /** Generates a PDF of a single student's answer to a question */
 /** GET /pdf/student-question?student_id=:studentId&question_id=:questionId */
+/** @since 0.1.0 */
+/** @backend implemented */
+/** @frontend implemented */
 export namespace StudentQuestionPdf {
 	// Response: binary PDF (Content-Type: application/pdf), no JSON body
 }
 
 /** Generates a PDF of a student's full test */
 /** GET /pdf/student-test?student_id=:studentId&test_id=:testId */
+/** @since 0.1.0 */
+/** @backend implemented */
+/** @frontend implemented */
 export namespace StudentTestPdf {
 	// Response: binary PDF (Content-Type: application/pdf), no JSON body
 }
