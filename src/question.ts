@@ -2,6 +2,7 @@ import type {
 	Answer,
 	Classroom,
 	CriterionCategory,
+	Derived,
 	GradeParams,
 	Question,
 	Student,
@@ -52,9 +53,11 @@ export namespace QuestionGet {
 
 /** Row returned by GET /question in the current backend */
 export interface QuestionListRow extends Question {
-	tests: (Test & { classroom: Classroom })[];
+	test: Test | null;
+	classroom: Classroom | null;
+	rubric: Derived.Rubric;
 	answers: {
-		number: number;
+		count: number;
 		blank: number;
 		not_typed: number;
 	}
