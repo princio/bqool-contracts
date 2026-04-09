@@ -25,7 +25,7 @@ export interface QuestionDetail {
 // ── Namespaces ─────────────────────────────────────────────────────
 
 /** Lists all questions */
-/** GET /question */
+/** GET /question/all */
 export namespace QuestionList {
 	export interface Response {
 		questions: QuestionDetail[];
