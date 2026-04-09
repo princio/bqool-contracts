@@ -6,7 +6,7 @@ import type {
 	StudentTest,
 	Test,
 } from "@princio/bqool";
-import type { OkResponse } from "./common";
+import type { OkIdResponse, OkResponse } from "./common";
 
 // ── StudentController (prefix: /student) ─────────────────────────
 
@@ -25,6 +25,17 @@ export namespace StudentGet {
 		student: Student;
 		classroom: Classroom;
 	}
+}
+
+/** Creates a new student */
+/** POST /student */
+/** @since 0.1.0 */
+export namespace StudentCreate {
+	export interface Request {
+		name: string;
+		classroom_id: number;
+	}
+	export type Response = OkIdResponse;
 }
 
 /** Updates a student's name */

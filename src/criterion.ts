@@ -5,11 +5,9 @@ import type { OkIdResponse, OkResponse } from "./common";
 
 /** Lists criteria for a question */
 /** GET /criterion/criteria?question_id=:questionId */
-/** @since 0.1.0 */
+/** @since 0.1.1 */
 export namespace RubricCriteria {
-	export interface Response {
-		criteria: Criterion[];
-	}
+	export type Response = Criterion[];
 }
 
 /** Creates a new criterion */
