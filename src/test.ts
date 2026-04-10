@@ -68,3 +68,15 @@ export namespace TestUpdateName {
 	}
 	export type Response = OkResponse;
 }
+
+/** Sets the grid for a test */
+/** PATCH /test/:test_id/grid */
+export namespace TestSetGrid {
+	export interface Params {
+		test_id: number;
+	}
+	export interface Request {
+		grid_id: number;
+	}
+	export type Response = OkResponse;
+}
