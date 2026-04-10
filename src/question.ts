@@ -1,105 +1,71 @@
 import type {
 	Answer,
-	Classroom,
-	CriterionCategory,
-	Derived,
-	GradeParams,
 	Question,
-	Student,
-	Test,
 } from "@princio/bqool";
-import type { OkIdResponse, OkResponse, QuestionDetail, QuestionListRow } from "./interfaces";
+
+import { IdParams, OkIdResponse, OkResponse } from "./common";
 
 export type { Question } from "@princio/bqool";
 
-// ── Namespaces ─────────────────────────────────────────────────────
+// ── CRUD ───────────────────────────────────────────────────────────
 
 /** Lists all questions */
 /** GET /question/all */
-/** @since 0.1.0 */
 export namespace QuestionList {
 	export interface Response {
-		questions: QuestionDetail[];
+		questions: Question[];
 	}
 }
 
 /** Gets a single question (bare domain object) */
 /** GET /question/:id */
-/** @since 0.1.0 */
 export namespace QuestionGet {
+	export type Params = IdParams;
 	export type Response = Question;
 }
 
-/** Gets a single question detail */
-/** GET /question/:id/detail */
-/** @since 0.1.0 */
-export namespace QuestionGetDetail {
-	export type Response = QuestionDetail;
-}
-
-// ── Actual backend shapes (alongside QuestionList / QuestionGetDetail above) ──
-//
-// QuestionList / QuestionGetDetail / QuestionDetail above are the historical
-// shapes used by parts of the frontend. The current backend services return
-// the richer shapes below; controllers are typed against these namespaces.
-// Both sets are kept until the frontend has migrated.
-
-
-/** Lists all questions (current backend shape) */
-/** GET /question */
-/** @since 0.1.0 */
-export namespace QuestionListRows {
-	export type Response = QuestionListRow[];
-}
-
-/** Gets question detail with per-student stats (current backend shape) */
-/** GET /question/:id/answers */
-/** @since 0.1.2 */
-export namespace QuestionGetAnswers {
-	export interface Response {
-		answers: ({
-			question: Question;
-			student: Student;
-			classroom: Classroom;
-			answer: Answer;
-		})[];
-	}
-}
-
-/** Creates a new question, optionally linked to a test */
-/** POST /question?test_id=:testId */
-/** @since 0.1.0 */
+/** Creates a standalone question (not linked to a test) */
+/** POST /question */
 export namespace QuestionCreate {
-	export type Request = Partial<Omit<Question, "id">>;
+	export interface Query {
+		test_id: number;
+	}
+	export type Request = Omit<Question, "id" | "test" | "criteria" | "answers">;
 	export type Response = OkIdResponse;
 }
 
-/** Updates an existing question's fields */
+/** Updates a question's fields */
 /** PUT /question/:id */
-/** @since 0.1.0 */
 export namespace QuestionUpdate {
-	export type Request = Partial<Omit<Question, "id">>;
+	export type Params = IdParams;
+	export type Request = Partial<Omit<Question, "id" | "test" | "criteria" | "answers">>;
 	export type Response = OkResponse;
 }
 
 /** Deletes a question */
 /** DELETE /question/:id */
-/** @since 0.2.0 */
 export namespace QuestionDelete {
+	export type Params = IdParams;
 	export type Response = OkResponse;
 }
 
-/** Gets the grade parameters for a question */
-/** GET /question/:id/grade-params */
-/** @since 0.1.0 */
-export namespace QuestionGetGradeParams {
-	export type Response = GradeParams | null;
+// ── Queries ────────────────────────────────────────────────────────
+
+/** Gets question detail with per-student stats (current backend shape) */
+/** GET /question/:id/answers */
+export namespace QuestionWithAnswers {
+	export type Params = IdParams;
+	export interface Response extends Question {
+		answers: Answer[];
+	}
 }
+
+// ── Specific mutations ─────────────────────────────────────────────
 
 /** Updates the grade parameters for a question */
 /** PUT /question/:id/grade-params */
-/** @since 0.1.0 */
 export namespace QuestionSetGradeParams {
+	export type Params = IdParams;
 	export interface Request {
 		params_json: string;
 	}

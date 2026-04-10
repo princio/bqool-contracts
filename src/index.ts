@@ -1,5 +1,5 @@
-export * from "./interfaces";
 export * from "./answer";
+export * from "./answer-correction";
 export * from "./booleanq";
 export * from "./booleanq-answer";
 export * from "./classroom";

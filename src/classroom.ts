@@ -1,44 +1,52 @@
 import type { Classroom, Question, Student, Test } from "@princio/bqool";
-import type { OkResponse } from "./common";
+import type { IdParams, OkIdResponse, OkResponse } from "./common";
 
 // ── ClassroomController (prefix: classroom) ───────────────────────
 
-/** Adds a student to a classroom */
-/** POST /classroom/:id/student */
-/** @since 0.1.1 */
-export namespace ClassroomStudentAdd {
-	export type Request = Omit<Student, "id">;
-}
-
-/** Creates a new classroom */
-/** POST /classroom */
-/** @since 0.1.0 */
-export namespace ClassroomCreate {
-	export interface Request {
-		name: string;
-	}
-}
-
 /** Lists all classrooms */
 /** GET /classroom */
-/** @since 0.1.0 */
 export namespace ClassroomList {
 	export type Response = Classroom[];
 }
 
 /** Classroom detail with students and tests */
 /** GET /classroom/:id */
-/** @since 0.1.0 */
 export namespace ClassroomDetail {
+	export type Params = IdParams;
 	export interface Response extends Classroom {
 		students: Student[];
 		tests: (Test & { questions_count: number })[];
 	}
 }
 
+/** Creates a new classroom */
+/** POST /classroom */
+export namespace ClassroomCreate {
+	export interface Request {
+		name: string;
+	}
+	export type Response = OkIdResponse;
+}
+
+/** Updates a classroom */
+/** PUT /classroom/:id */
+export namespace ClassroomUpdate {
+	export type Params = IdParams;
+	export type Request = Omit<Classroom, "id" | "students">;
+	export type Response = OkResponse;
+}
+
+/** Deletes a classroom */
+/** DELETE /classroom/:id */
+export namespace ClassroomDelete {
+	export type Params = IdParams;
+	export type Response = OkResponse;
+}
+
+// ── Queries ─────────────────────────────────────────────────────
+
 /** Classroom summary with test/question tree */
 /** GET /classroom/dashboard */
-/** @since 0.1.0 */
 export namespace ClassroomSummary {
 	export type TestWithQuestion = Test & {
 		questions: Pick<Question, "id" | "name">[];
@@ -49,20 +57,22 @@ export namespace ClassroomSummary {
 	})[];
 }
 
-/** Deletes a classroom */
-/** DELETE /classroom/:id */
-/** @since 0.1.0 */
-export namespace ClassroomDelete {}
+// ── Specific mutations ──────────────────────────────────────────
 
-/** Updates a classroom */
-/** PUT /classroom/:id */
-/** @since 0.2.0 */
-export namespace ClassroomUpdate {
-	export type Request = Partial<Omit<Classroom, "id">>;
-	export type Response = OkResponse;
+/** Adds a student to a classroom */
+/** POST /classroom/:id/student */
+export namespace ClassroomStudentAdd {
+	export type Params = IdParams;
+	export type Request = Omit<Student, "id">;
+	export type Response = OkIdResponse;
 }
 
 /** Removes a student from a classroom */
 /** DELETE /classroom/:id/student/:studentId */
-/** @since 0.1.0 */
-export namespace ClassroomStudentRemove {}
+export namespace ClassroomStudentRemove {
+	export interface Params {
+		id: number;
+		studentId: number;
+	}
+	export type Response = OkResponse;
+}

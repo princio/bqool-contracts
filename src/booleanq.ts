@@ -1,36 +1,41 @@
 import type { BooleanQ } from "@princio/bqool";
-import type { OkIdResponse, OkResponse } from "./common";
+import type { IdParams, OkIdResponse, OkResponse } from "./common";
 
 // ── BooleanQController (prefix: booleanqs/) ───────────────────────
 
 /** Lists boolean questions for a criterion */
 /** GET /booleanq/:criterionId */
-/** @since 0.1.0 */
 export namespace BooleanQList {
+	export interface Params {
+		criterionId: number;
+	}
 	export type Response = BooleanQ[];
 }
 
 /** Creates a new boolean question linked to a criterion */
 /** POST /booleanq */
-/** @since 0.1.0 */
 export namespace BooleanQCreate {
-	export interface Request extends Omit<BooleanQ, "id"> {
+	export interface Request extends Omit<BooleanQ, "id" | "criterion"> {
 		criterion_id: number;
 	}
 	export type Response = OkIdResponse;
 }
 
-/** Updates a boolean question */
-/** PATCH /booleanq/:id */
-/** @since 0.1.0 */
-export namespace BooleanQUpdate {
-	export type Request = Partial<Omit<BooleanQ, "id">>;
+/** Deletes a boolean question */
+/** DELETE /booleanq/:id */
+export namespace BooleanQDelete {
+	export type Params = IdParams;
 	export type Response = OkResponse;
 }
 
-/** Deletes a boolean question */
-/** DELETE /booleanq/:id */
-/** @since 0.1.0 */
-export namespace BooleanQDelete {
+// ── Specific mutations ──────────────────────────────��───────────
+
+/** Updates a boolean question's text */
+/** PATCH /booleanq/:id/text */
+export namespace BooleanQUpdateText {
+	export type Params = IdParams;
+	export interface Request {
+		text: string;
+	}
 	export type Response = OkResponse;
 }

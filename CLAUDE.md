@@ -14,27 +14,15 @@ The only reasons to edit a type here:
 
 If a backend service returns something that doesn't match a type in this package, fix the service.
 
-## Endpoint versioning and implementation status
+## Endpoint comment convention
 
-Every `export namespace` has comment tags tracking its lifecycle:
+Every `export namespace` has comment headers describing its route:
 
 ```typescript
 /** Description */
 /** METHOD /path */
-/** @since 0.2.0 */
 export namespace ExampleEndpoint { ... }
 ```
 
-- `@since <version>` — the backend-types version that introduced this endpoint
-- `@backend implemented | not-implemented` — whether the backend has a working controller route
-- `@frontend implemented | not-implemented` — whether the frontend has a working API call
-- `@deprecated <version>` — marks an obsolete endpoint (add when retiring)
-
-To discover gaps:
-```bash
-grep "@backend not-implemented" src/*.ts
-grep "@frontend not-implemented" src/*.ts
-grep "@deprecated" src/*.ts
-```
-
-When implementing an endpoint, change its tag from `not-implemented` to `implemented`.
+Type compatibility is enforced by TypeScript compilation.
+Frontend coverage is checked by `bqool-frontend-v2/scripts/check-contracts.ts`.

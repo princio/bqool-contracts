@@ -1,19 +1,21 @@
-import type { Student, StudentTest, Test } from "@princio/bqool";
-import type { OkIdResponse, OkResponse } from "./common";
+import type { GridScore, Student, StudentTest, Test } from "@princio/bqool";
+import type { IdParams, OkIdResponse, OkResponse } from "./common";
 
-// ── StudentTestController (prefix: student-tests/) ──────────────
+// ── CRUD ───────────────────────────────────────────────────────────
 
 /** Lists student-tests for a given test */
 /** GET /student-test?test_id=:testId */
-/** @since 0.2.0 */
 export namespace StudentTestList {
-	export type Response = (StudentTest & { student: Student })[];
+	export interface Query {
+		test_id: number;
+	};
+	export type Response = StudentTest[];
 }
 
 /** Gets a student-test by id */
 /** GET /student-test/:id */
-/** @since 0.2.0 */
 export namespace StudentTestGet {
+	export type Params = IdParams;
 	export interface Response extends StudentTest {
 		student: Student;
 		test: Test;
@@ -22,7 +24,6 @@ export namespace StudentTestGet {
 
 /** Creates a new student-test record */
 /** POST /student-test */
-/** @since 0.2.0 */
 export namespace StudentTestCreate {
 	export interface Request {
 		student_id: number;
@@ -31,17 +32,41 @@ export namespace StudentTestCreate {
 	export type Response = OkIdResponse;
 }
 
-/** Updates a student-test record */
-/** PUT /student-test/:id */
-/** @since 0.2.0 */
-export namespace StudentTestUpdate {
-	export type Request = Partial<Omit<StudentTest, "id">>;
+/** Deletes a student-test record */
+/** DELETE /student-test/:id */
+export namespace StudentTestDelete {
+	export type Params = IdParams;
 	export type Response = OkResponse;
 }
 
-/** Deletes a student-test record */
-/** DELETE /student-test/:id */
-/** @since 0.2.0 */
-export namespace StudentTestDelete {
+// ── Specific mutations ──────────────────────────────────────────
+
+/** Updates a student-test's grid scores */
+/** PATCH /student-test/:id/grid */
+export namespace StudentTestUpdateGrid {
+	export type Params = IdParams;
+	export type Request = GridScore;
+	export type Response = OkResponse;
+}
+
+/** Updates a student-test's grade */
+/** PATCH /student-test/:id/grade */
+export namespace StudentTestUpdateGrade {
+	export type Params = IdParams;
+	export interface Request {
+		value: number | null;
+		rationale: string | null;
+	}
+	export type Response = OkResponse;
+}
+
+/** Updates a student-test's bonus */
+/** PATCH /student-test/:id/bonus */
+export namespace StudentTestUpdateBonus {
+	export type Params = IdParams;
+	export interface Request {
+		value: number | null;
+		rationale: string | null;
+	}
 	export type Response = OkResponse;
 }
