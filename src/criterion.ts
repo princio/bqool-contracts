@@ -1,4 +1,4 @@
-import type { BooleanQ, Criterion } from "@princio/bqool";
+import type { BooleanQ, Criterion, Question } from "@princio/bqool";
 import type { OkIdResponse, OkResponse } from "./common";
 
 // ── CriterionController (prefix: criterion/) ──────────────────────
@@ -33,12 +33,20 @@ export namespace CriterionDelete {
 	export type Response = OkResponse;
 }
 
+/** Gets a single criterion */
+/** GET /criterion/criteria/:id */
+/** @since 0.1.0 */
+export namespace CriterionGet {
+	export type Response = Criterion;
+}
+
 /** Gets a criterion with its boolean questions */
 /** GET /criterion/criteria/:id/detail */
 /** @since 0.1.0 */
-export namespace CriterionBooleanQList {
+export namespace CriterionGetDetail {
 	export interface Response {
 		criterion: Criterion;
+		question: Question;
 		booleanqs: BooleanQ[];
 	}
 }
