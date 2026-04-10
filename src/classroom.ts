@@ -63,7 +63,7 @@ export namespace ClassroomSummary {
 /** POST /classroom/:id/student */
 export namespace ClassroomStudentAdd {
 	export type Params = IdParams;
-	export type Request = Omit<Student, "id">;
+	export type Request = Omit<Student, "id" | 'classroom'>;
 	export type Response = OkIdResponse;
 }
 
