@@ -62,6 +62,16 @@ export namespace QuestionWithAnswers {
 
 // ── Specific mutations ─────────────────────────────────────────────
 
+/** Sets the test for a question */
+/** PATCH /question/:id/test */
+export namespace QuestionSetTest {
+	export type Params = IdParams;
+	export interface Request {
+		test_id: number;
+	}
+	export type Response = OkResponse;
+}
+
 /** Updates the grade parameters for a question */
 /** PUT /question/:id/grade-params */
 export namespace QuestionSetGradeParams {

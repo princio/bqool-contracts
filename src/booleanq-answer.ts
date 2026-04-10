@@ -22,7 +22,7 @@ export namespace BooleanQAnswerDelete {
 // ── Specific mutations ──────────────────────────────────────────
 
 /** Update a booleanq-answer with optional citations and rationale */
-/** PATCH /booleanq-answer/:booleanqId */
+/** PATCH /booleanq-answer/:id */
 export namespace BooleanQAnswerUpdate {
 	export type Params = IdParams;
 	export interface Request {
@@ -34,14 +34,14 @@ export namespace BooleanQAnswerUpdate {
 }
 
 /** Increment booleanq-answer review counter */
-/** POST /booleanq-answer/:booleanqId/review */
+/** POST /booleanq-answer/:id/review */
 export namespace BooleanQAnswerReview {
 	export type Params = IdParams;
 	export type Response = OkResponse;
 }
 
 /** Resets the review count for a booleanq-answer */
-/** DELETE /booleanq-answer/:booleanqId/review */
+/** DELETE /booleanq-answer/:id/review */
 export namespace BooleanQAnswerReviewReset {
 	export type Params = IdParams;
 	export type Response = OkResponse;

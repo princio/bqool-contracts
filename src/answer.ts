@@ -13,6 +13,13 @@ export namespace AnswerList {
 	export type Response = Answer[];
 }
 
+/** Gets a single answer by ID */
+/** GET /answer/:id */
+export namespace AnswerGet {
+	export type Params = IdParams;
+	export type Response = Answer;
+}
+
 /** Creates a single answer */
 /** POST /answer?student_id=:studentId&question_id=:questionId */
 export namespace AnswerCreate {
