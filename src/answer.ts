@@ -14,9 +14,13 @@ export namespace AnswerList {
 }
 
 /** Creates a single answer */
-/** POST /answer */
+/** POST /answer?student_id=:studentId&question_id=:questionId */
 export namespace AnswerCreate {
-	export type Request = Omit<Answer, 'id' | 'student' | 'question'>;
+	export interface Query {
+		student_id: number;
+		question_id: number;
+	}
+	export type Request = Omit<Answer, "id" | "student" | "question">;
 	export type Response = OkIdResponse;
 }
 
