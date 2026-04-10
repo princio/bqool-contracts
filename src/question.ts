@@ -8,20 +8,10 @@ import type {
 	Student,
 	Test,
 } from "@princio/bqool";
-import type { OkIdResponse, OkResponse } from "./common";
+import type { OkIdResponse, OkResponse, QuestionDetail, QuestionListRow } from "./interfaces";
 
 export type { Question } from "@princio/bqool";
 
-
-export interface QuestionDetail {
-	question: Question;
-	tests: (Test & { classroom: Classroom })[];
-	answers: {
-		number: number;
-		blank: number;
-		not_typed: number;
-	}
-}
 // ── Namespaces ─────────────────────────────────────────────────────
 
 /** Lists all questions */
@@ -33,18 +23,18 @@ export namespace QuestionList {
 	}
 }
 
-/** Gets a single question detail */
-/** GET /question/:id */
-/** @since 0.1.0 */
-export namespace QuestionGetDetail {
-	export type Response = QuestionDetail;
-}
-
 /** Gets a single question (bare domain object) */
 /** GET /question/:id */
 /** @since 0.1.0 */
 export namespace QuestionGet {
 	export type Response = Question;
+}
+
+/** Gets a single question detail */
+/** GET /question/:id/detail */
+/** @since 0.1.0 */
+export namespace QuestionGetDetail {
+	export type Response = QuestionDetail;
 }
 
 // ── Actual backend shapes (alongside QuestionList / QuestionGetDetail above) ──
@@ -54,17 +44,6 @@ export namespace QuestionGet {
 // the richer shapes below; controllers are typed against these namespaces.
 // Both sets are kept until the frontend has migrated.
 
-/** Row returned by GET /question in the current backend */
-export interface QuestionListRow extends Question {
-	test: Test | null;
-	classroom: Classroom | null;
-	rubric: Derived.Rubric;
-	answers: {
-		count: number;
-		blank: number;
-		not_typed: number;
-	}
-}
 
 /** Lists all questions (current backend shape) */
 /** GET /question */
@@ -73,19 +52,17 @@ export namespace QuestionListRows {
 	export type Response = QuestionListRow[];
 }
 
-export interface QuestionStudentSummary {
-	question: Question;
-	student: Student;
-	classroom: Classroom;
-	answer: Answer;
-}
-
 /** Gets question detail with per-student stats (current backend shape) */
-/** GET /question/:id/summary */
-/** @since 0.1.0 */
-export namespace QuestionSummary {
+/** GET /question/:id/answers */
+/** @since 0.1.2 */
+export namespace QuestionGetAnswers {
 	export interface Response {
-		usages: QuestionStudentSummary[];
+		answers: ({
+			question: Question;
+			student: Student;
+			classroom: Classroom;
+			answer: Answer;
+		})[];
 	}
 }
 

@@ -6,7 +6,7 @@ import type {
 	StudentTest,
 	Test,
 } from "@princio/bqool";
-import type { OkIdResponse, OkResponse } from "./common";
+import type { OkIdResponse, OkResponse, StudentTestsHistoryQuestion } from "./interfaces";
 
 // ── StudentController (prefix: /student) ─────────────────────────
 
@@ -72,14 +72,6 @@ export namespace StudentTestsOverview {
 /** @since 0.2.0 */
 export namespace StudentDelete {
 	export type Response = OkResponse;
-}
-
-export interface StudentTestsHistoryQuestion {
-	id: number;
-	name: string;
-	word_count: number;
-	is_blank: boolean;
-	verdict: Answer["verdict"]
 }
 
 /** Gets a student's tests history with per-question answer status */

@@ -7,7 +7,7 @@ import type {
 	StudentTest,
 	Test,
 } from "@princio/bqool";
-import type { OkIdResponse, OkResponse } from "./common";
+import type { OkIdResponse, OkResponse, AnswerDetail } from "./interfaces";
 
 // ── AnswerController (prefix: answers) ────────────────────────────
 
@@ -99,13 +99,6 @@ export namespace AnswerByTest {
 // consumers that import them. The current backend service returns the
 // richer shapes below (flat answer detail, per-question wrapper). Backend
 // controllers are typed against these.
-
-/** Flat answer detail returned by GET /answer/:id and GET /answer/by-student */
-export interface AnswerDetail extends Answer {
-	question: Question;
-	student: Student;
-	criteria: Derived.AnswerCriterion[];
-}
 
 /** Gets full answer detail (current backend shape) */
 /** GET /answer/:id */

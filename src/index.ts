@@ -1,3 +1,4 @@
+export * from "./interfaces";
 export * from "./answer";
 export * from "./booleanq";
 export * from "./booleanq-answer";

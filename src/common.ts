@@ -1,7 +1,1 @@
-export interface OkResponse {
-	ok: boolean;
-}
-export interface OkIdResponse {
-	ok: boolean;
-	id: number;
-}
+export type { OkResponse, OkIdResponse } from "./interfaces";
