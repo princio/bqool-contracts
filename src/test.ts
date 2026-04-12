@@ -8,10 +8,13 @@ import { AnswerCorrection } from "./answer-correction";
 
 // ── CRUD ───────────────────────────────────────────────────────────
 
-/** Lists all tests with classroom info */
+/** Lists tests, optionally filtered */
 export namespace TestList {
 	export const method = 'GET' as const;
 	export const path = '/test' as const;
+	export interface Query {
+		classroom_id?: number;
+	}
 	export type Row = Test & { classroom: Classroom };
 	export type Response = Row[];
 }

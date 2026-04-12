@@ -7,10 +7,15 @@ import { IdParams, OkIdResponse, OkResponse } from "./common";
 
 // ── AnswerController (prefix: answers) ────────────────────────────
 
-/** Lists all answers */
+/** Lists answers, optionally filtered */
 export namespace AnswerList {
 	export const method = 'GET' as const;
 	export const path = '/answer' as const;
+	export interface Query {
+		student_id?: number;
+		question_id?: number;
+		test_id?: number;
+	}
 	export type Response = Answer[];
 }
 

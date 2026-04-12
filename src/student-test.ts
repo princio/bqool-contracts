@@ -3,12 +3,13 @@ import type { IdParams, OkIdResponse, OkResponse } from "./common";
 
 // ── CRUD ───────────────────────────────────────────────────────────
 
-/** Lists student-tests for a given test */
+/** Lists student-tests, optionally filtered */
 export namespace StudentTestList {
 	export const method = 'GET' as const;
 	export const path = '/student-test' as const;
 	export interface Query {
-		test_id: number;
+		test_id?: number;
+		student_id?: number;
 	};
 	export type Response = StudentTest[];
 }

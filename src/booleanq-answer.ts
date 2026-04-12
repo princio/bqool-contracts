@@ -3,12 +3,13 @@ import type { IdParams, OkResponse } from "./common";
 
 // ── BooleanQAnswerController (prefix: booleanq-answers) ─────────────
 
-/** Lists booleanq-answers for an answer */
+/** Lists booleanq-answers, optionally filtered */
 export namespace BooleanQAnswerList {
 	export const method = 'GET' as const;
 	export const path = '/booleanq-answer' as const;
 	export interface Query {
-		answer_id: number;
+		answer_id?: number;
+		booleanq_id?: number;
 	}
 	export type Response = BooleanQAnswer[];
 }

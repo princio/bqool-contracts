@@ -2,7 +2,7 @@ import type { Derived } from "@princio/bqool";
 
 // ── RubricController (prefix: rubric/) ────────────────────────────
 
-/** Gets full rubric detail for a question */
+/** Gets rubric for a question */
 export namespace RubricGet {
 	export const method = 'GET' as const;
 	export const path = '/rubric/:question_id' as const;

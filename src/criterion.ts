@@ -1,4 +1,4 @@
-import type { BooleanQ, Criterion, Question } from "@princio/bqool";
+import type { BooleanQ, Criterion, CriterionCategory, Question } from "@princio/bqool";
 import type { IdParams, OkIdResponse, OkResponse } from "./common";
 
 // ── CriterionController (prefix: criterion/) ──────────────────────
@@ -8,7 +8,8 @@ export namespace CriterionList {
 	export const method = 'GET' as const;
 	export const path = '/criterion/list' as const;
 	export interface Query {
-		question_id: number;
+		question_id?: number;
+		category?: CriterionCategory;
 	}
 	export type Response = Criterion[];
 }
@@ -47,18 +48,4 @@ export namespace CriterionDelete {
 	export const path = '/criterion/criteria/:id' as const;
 	export type Params = IdParams;
 	export type Response = OkResponse;
-}
-
-// ── Queries ─────────────────────────────────────────────────────
-
-/** Gets a criterion with its boolean questions */
-export namespace CriterionGetDetail {
-	export const method = 'GET' as const;
-	export const path = '/criterion/criteria/:id/detail' as const;
-	export type Params = IdParams;
-	export interface Response {
-		criterion: Criterion;
-		question: Question;
-		booleanqs: BooleanQ[];
-	}
 }

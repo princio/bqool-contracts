@@ -13,10 +13,13 @@ export const QuestionPrefix = '/question';
 
 // ── CRUD ───────────────────────────────────────────────────────────
 
-/** Lists all questions */
+/** Lists questions, optionally filtered */
 export namespace QuestionList {
 	export const method = 'GET' as const;
 	export const path = '/all' as const;
+	export interface Query {
+		test_id?: number;
+	}
 	export interface Response {
 		questions: Question[];
 	}
@@ -60,7 +63,7 @@ export namespace QuestionDelete {
 
 // ── Queries ────────────────────────────────────────────────────────
 
-/** Gets question detail with per-student stats (current backend shape) */
+/** Gets question with per-student stats (current backend shape) */
 export namespace QuestionWithAnswers {
 	export const method = 'GET' as const;
 	export const path = '/:id/answers' as const;

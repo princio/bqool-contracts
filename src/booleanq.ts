@@ -3,12 +3,13 @@ import type { IdParams, OkIdResponse, OkResponse } from "./common";
 
 // ── BooleanQController (prefix: booleanqs/) ───────────────────────
 
-/** Lists boolean questions for a criterion */
+/** Lists boolean questions, optionally filtered */
 export namespace BooleanQList {
 	export const method = 'GET' as const;
-	export const path = '/booleanq/:criterionId' as const;
-	export interface Params {
-		criterionId: number;
+	export const path = '/booleanq' as const;
+	export interface Query {
+		criterion_id?: number;
+		question_id?: number;
 	}
 	export type Response = BooleanQ[];
 }

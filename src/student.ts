@@ -6,14 +6,17 @@ import { IdParams, OkIdResponse, OkResponse } from "./common";
 
 // ── StudentController (prefix: /student) ─────────────────────────
 
-/** Lists all students */
+/** Lists students, optionally filtered */
 export namespace StudentList {
 	export const method = 'GET' as const;
 	export const path = '/student' as const;
+	export interface Query {
+		classroom_id?: number;
+	}
 	export type Response = (Student & { classroom: Classroom })[];
 }
 
-/** Gets a student detail */
+/** Gets a student */
 export namespace StudentGet {
 	export const method = 'GET' as const;
 	export const path = '/student/:id' as const;
@@ -43,7 +46,7 @@ export namespace StudentDelete {
 /** Updates a student's name */
 export namespace StudentUpdateName {
 	export const method = 'PATCH' as const;
-	export const path = '/student/:id' as const;
+	export const path = '/student/:student_id/name' as const;
 	export type Params = IdParams;
 	export interface Body {
 		name: string;
