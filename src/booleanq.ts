@@ -41,6 +41,7 @@ export namespace BooleanQUpdateText {
 	export type Params = IdParams;
 	export interface Body {
 		text: string;
+		reset_reviews: boolean;
 	}
 	export type Response = OkResponse;
 }

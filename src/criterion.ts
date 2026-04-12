@@ -35,7 +35,7 @@ export namespace CriterionUpdate {
 	export const method = 'PATCH' as const;
 	export const path = '/criterion/criteria/:id' as const;
 	export type Params = IdParams;
-	export type Body = Partial<Omit<Criterion, "id" | "question" | "booleanqs">>;
+	export type Body = Partial<Omit<Criterion, "id" | "question" | "booleanqs">> & { reset_reviews: boolean };
 	export type Response = OkResponse;
 }
 

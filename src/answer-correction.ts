@@ -11,7 +11,5 @@ export namespace AnswerCorrection {
 	export const method = 'GET' as const;
 	export const path = '/answer/:id/correction' as const;
 	export type Params = IdParams;
-	export interface Response extends Answer {
-		correction: Derived.Correction;
-	}
+	export type Response =Derived.Correction;
 }
