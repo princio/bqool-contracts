@@ -1,4 +1,4 @@
-import type { Classroom, Question, Student, Test } from "@princio/bqool";
+import type { Classroom, Test } from "@princio/bqool";
 import type { IdParams, OkIdResponse, OkResponse } from "./common";
 
 // ── ClassroomController (prefix: classroom) ───────────────────────
@@ -54,28 +54,4 @@ export namespace ClassroomDashboard {
 	export type Response = (Classroom & { tests: Test[] });
 }
 
-// ── Specific mutations ──────────────────────────────────────────
 
-/** Adds a student to a classroom */
-export namespace ClassroomStudentAdd {
-	export const method = 'POST' as const;
-	export const path = '/classroom/:classroom_id/student-add' as const;
-	export interface Params {
-		classroom_id: number;
-	};
-	export type Body = Omit<Student, "id" | 'classroom'>;
-	export type Response = OkIdResponse;
-}
-
-/** Removes a student from a classroom */
-export namespace ClassroomStudentRemove {
-	export const method = 'DELETE' as const;
-	export const path = '/classroom/:classroom_id/student-remove' as const;
-	export interface Params {
-		id: number;
-	}
-	export interface Body {
-		student_id: number;
-	}
-	export type Response = OkResponse;
-}

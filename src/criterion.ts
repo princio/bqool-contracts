@@ -25,11 +25,8 @@ export namespace CriterionGet {
 /** Creates a new criterion */
 export namespace CriterionCreate {
 	export const method = 'POST' as const;
-	export const path = '/criterion/questions/:questionId/criteria' as const;
-	export interface Params {
-		questionId: number;
-	}
-	export type Body = Omit<Criterion, "id" | "question" | "booleanqs">;
+	export const path = '/criterion' as const;
+	export type Body = Omit<Criterion, "id" | "question" | "booleanqs"> & { question_id: number };
 	export type Response = OkIdResponse;
 }
 

@@ -33,14 +33,11 @@ export namespace QuestionGet {
 	export type Response = Question;
 }
 
-/** Creates a standalone question (not linked to a test) */
+/** Creates a question */
 export namespace QuestionCreate {
 	export const method = 'POST' as const;
 	export const path = '/' as const;
-	export interface Query {
-		test_id: number;
-	}
-	export type Body = Omit<Question, "id" | "test" | "criteria" | "answers">;
+	export type Body = Omit<Question, "id" | "test" | "criteria" | "answers"> & { test_id: number };
 	export type Response = OkIdResponse;
 }
 

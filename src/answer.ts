@@ -31,11 +31,12 @@ export namespace AnswerGet {
 export namespace AnswerCreate {
 	export const method = 'POST' as const;
 	export const path = '/answer' as const;
-	export interface Query {
+	export type Body = {
 		student_id: number;
 		question_id: number;
-	}
-	export type Body = Omit<Answer, "id" | "student" | "question">;
+		text: string;
+		is_blank: boolean;
+	};
 	export type Response = OkIdResponse;
 }
 

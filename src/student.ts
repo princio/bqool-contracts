@@ -47,7 +47,9 @@ export namespace StudentDelete {
 export namespace StudentUpdateName {
 	export const method = 'PATCH' as const;
 	export const path = '/student/:student_id/name' as const;
-	export type Params = IdParams;
+	export interface Params {
+		student_id: number;
+	}
 	export interface Body {
 		name: string;
 	}
