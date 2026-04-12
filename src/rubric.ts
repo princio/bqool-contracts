@@ -4,7 +4,8 @@ import type { Derived } from "@princio/bqool";
 
 /** Gets full rubric detail for a question */
 export namespace RubricGet {
-	export const route = { method: 'GET', path: '/rubric/:question_id' } as const;
+	export const method = 'GET' as const;
+	export const path = '/rubric/:question_id' as const;
 	export interface Params {
 		question_id: number;
 	}

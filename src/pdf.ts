@@ -6,7 +6,8 @@
 
 /** Generates a PDF of a single student's answer to a question */
 export namespace PdfStudentQuestion {
-	export const route = { method: 'GET', path: '/pdf/student-question' } as const;
+	export const method = 'GET' as const;
+	export const path = '/pdf/student-question' as const;
 	export interface Query {
 		student_id: number;
 		question_id: number;
@@ -16,7 +17,8 @@ export namespace PdfStudentQuestion {
 
 /** Generates a PDF of a student's full test */
 export namespace PdfStudentTest {
-	export const route = { method: 'GET', path: '/pdf/student-test' } as const;
+	export const method = 'GET' as const;
+	export const path = '/pdf/student-test' as const;
 	export interface Query {
 		student_id: number;
 		test_id: number;

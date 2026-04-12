@@ -8,7 +8,8 @@ import { IdParams } from "./common";
 
 /** Gets full answer detail with correction data */
 export namespace AnswerCorrection {
-	export const route = { method: 'GET', path: '/answer/:id/correction' } as const;
+	export const method = 'GET' as const;
+	export const path = '/answer/:id/correction' as const;
 	export type Params = IdParams;
 	export interface Response extends Answer {
 		correction: Derived.Correction;

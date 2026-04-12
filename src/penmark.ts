@@ -5,7 +5,8 @@ import type { IdParams, OkResponse } from "./common";
 
 /** Lists penmarks for an answer */
 export namespace PenmarkList {
-	export const route = { method: 'GET', path: '/penmark' } as const;
+	export const method = 'GET' as const;
+	export const path = '/penmark' as const;
 	export interface Query {
 		answer_id: number;
 	}
@@ -14,7 +15,8 @@ export namespace PenmarkList {
 
 /** Creates a new penmark annotation */
 export namespace PenmarkCreate {
-	export const route = { method: 'POST', path: '/penmark' } as const;
+	export const method = 'POST' as const;
+	export const path = '/penmark' as const;
 	export interface Body extends Omit<Penmark, "id" | "answer"> {
 		answer_id: number;
 	}
@@ -26,7 +28,8 @@ export namespace PenmarkCreate {
 
 /** Updates a penmark annotation */
 export namespace PenmarkUpdate {
-	export const route = { method: 'PATCH', path: '/penmark/:id' } as const;
+	export const method = 'PATCH' as const;
+	export const path = '/penmark/:id' as const;
 	export type Params = IdParams;
 	export type Body = Partial<Omit<Penmark, "id" | "answer">>;
 	export type Response = OkResponse;
@@ -34,7 +37,8 @@ export namespace PenmarkUpdate {
 
 /** Deletes a penmark annotation */
 export namespace PenmarkDelete {
-	export const route = { method: 'DELETE', path: '/penmark/:id' } as const;
+	export const method = 'DELETE' as const;
+	export const path = '/penmark/:id' as const;
 	export type Params = IdParams;
 	export type Response = OkResponse;
 }

@@ -10,14 +10,16 @@ import { AnswerCorrection } from "./answer-correction";
 
 /** Lists all tests with classroom info */
 export namespace TestList {
-	export const route = { method: 'GET', path: '/test' } as const;
+	export const method = 'GET' as const;
+	export const path = '/test' as const;
 	export type Row = Test & { classroom: Classroom };
 	export type Response = Row[];
 }
 
 /** Gets a test by id */
 export namespace TestGetById {
-	export const route = { method: 'GET', path: '/test/:id' } as const;
+	export const method = 'GET' as const;
+	export const path = '/test/:id' as const;
 	export type Params = IdParams;
 	export interface Response {
 		test: Test;
@@ -27,7 +29,8 @@ export namespace TestGetById {
 
 /** Creates a new test in a classroom */
 export namespace TestCreate {
-	export const route = { method: 'POST', path: '/test' } as const;
+	export const method = 'POST' as const;
+	export const path = '/test' as const;
 	export interface Body {
 		class_id: number;
 		name: string;
@@ -37,7 +40,8 @@ export namespace TestCreate {
 
 /** Deletes a test */
 export namespace TestDelete {
-	export const route = { method: 'DELETE', path: '/test/:id' } as const;
+	export const method = 'DELETE' as const;
+	export const path = '/test/:id' as const;
 	export type Params = IdParams;
 	export type Response = OkResponse;
 }
@@ -46,7 +50,8 @@ export namespace TestDelete {
 
 /** Gets test results with all student answers */
 export namespace TestCorrections {
-	export const route = { method: 'GET', path: '/test/:id/results' } as const;
+	export const method = 'GET' as const;
+	export const path = '/test/:id/results' as const;
 	export type Params = IdParams;
 	export interface Response {
 		test: Test;
@@ -59,7 +64,8 @@ export namespace TestCorrections {
 
 /** Updates a test's name */
 export namespace TestUpdateName {
-	export const route = { method: 'PATCH', path: '/test/:id/name' } as const;
+	export const method = 'PATCH' as const;
+	export const path = '/test/:id/name' as const;
 	export type Params = IdParams;
 	export interface Body {
 		name: string;
@@ -69,7 +75,8 @@ export namespace TestUpdateName {
 
 /** Sets the grid for a test */
 export namespace TestSetGrid {
-	export const route = { method: 'PATCH', path: '/test/:test_id/grid' } as const;
+	export const method = 'PATCH' as const;
+	export const path = '/test/:test_id/grid' as const;
 	export interface Params {
 		test_id: number;
 	}

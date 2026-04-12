@@ -5,7 +5,8 @@ import type { IdParams, OkIdResponse, OkResponse } from "./common";
 
 /** Lists boolean questions for a criterion */
 export namespace BooleanQList {
-	export const route = { method: 'GET', path: '/booleanq/:criterionId' } as const;
+	export const method = 'GET' as const;
+	export const path = '/booleanq/:criterionId' as const;
 	export interface Params {
 		criterionId: number;
 	}
@@ -14,7 +15,8 @@ export namespace BooleanQList {
 
 /** Creates a new boolean question linked to a criterion */
 export namespace BooleanQCreate {
-	export const route = { method: 'POST', path: '/booleanq' } as const;
+	export const method = 'POST' as const;
+	export const path = '/booleanq' as const;
 	export interface Body extends Omit<BooleanQ, "id" | "criterion"> {
 		criterion_id: number;
 	}
@@ -23,7 +25,8 @@ export namespace BooleanQCreate {
 
 /** Deletes a boolean question */
 export namespace BooleanQDelete {
-	export const route = { method: 'DELETE', path: '/booleanq/:id' } as const;
+	export const method = 'DELETE' as const;
+	export const path = '/booleanq/:id' as const;
 	export type Params = IdParams;
 	export type Response = OkResponse;
 }
@@ -32,7 +35,8 @@ export namespace BooleanQDelete {
 
 /** Updates a boolean question's text */
 export namespace BooleanQUpdateText {
-	export const route = { method: 'PATCH', path: '/booleanq/:id/text' } as const;
+	export const method = 'PATCH' as const;
+	export const path = '/booleanq/:id/text' as const;
 	export type Params = IdParams;
 	export interface Body {
 		text: string;

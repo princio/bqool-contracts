@@ -15,7 +15,8 @@ export const QuestionPrefix = '/question';
 
 /** Lists all questions */
 export namespace QuestionList {
-	export const route = { method: 'GET', prefix: QuestionPrefix, path: '/all' } as const;
+	export const method = 'GET' as const;
+	export const path = '/all' as const;
 	export interface Response {
 		questions: Question[];
 	}
@@ -23,14 +24,16 @@ export namespace QuestionList {
 
 /** Gets a single question (bare domain object) */
 export namespace QuestionGet {
-	export const route = { method: 'GET', prefix: QuestionPrefix, path: '/:id' } as const;
+	export const method = 'GET' as const;
+	export const path = '/:id' as const;
 	export type Params = IdParams;
 	export type Response = Question;
 }
 
 /** Creates a standalone question (not linked to a test) */
 export namespace QuestionCreate {
-	export const route = { method: 'POST', prefix: QuestionPrefix, path: '/' } as const;
+	export const method = 'POST' as const;
+	export const path = '/' as const;
 	export interface Query {
 		test_id: number;
 	}
@@ -40,7 +43,8 @@ export namespace QuestionCreate {
 
 /** Updates a question's fields */
 export namespace QuestionUpdate {
-	export const route = { method: 'PUT', prefix: QuestionPrefix, path: '/:id' } as const;
+	export const method = 'PUT' as const;
+	export const path = '/:id' as const;
 	export type Params = IdParams;
 	export type Body = Partial<Omit<Question, "id" | "test" | "criteria" | "answers">>;
 	export type Response = OkResponse;
@@ -48,7 +52,8 @@ export namespace QuestionUpdate {
 
 /** Deletes a question */
 export namespace QuestionDelete {
-	export const route = { method: 'DELETE', prefix: QuestionPrefix, path: '/:id' } as const;
+	export const method = 'DELETE' as const;
+	export const path = '/:id' as const;
 	export type Params = IdParams;
 	export type Response = OkResponse;
 }
@@ -57,7 +62,8 @@ export namespace QuestionDelete {
 
 /** Gets question detail with per-student stats (current backend shape) */
 export namespace QuestionWithAnswers {
-	export const route = { method: 'GET', prefix: QuestionPrefix, path: '/:id/answers' } as const;
+	export const method = 'GET' as const;
+	export const path = '/:id/answers' as const;
 	export type Params = IdParams;
 	export interface Response extends Question {
 		answers: Answer[];
@@ -68,7 +74,8 @@ export namespace QuestionWithAnswers {
 
 /** Sets the test for a question */
 export namespace QuestionSetTest {
-	export const route = { method: 'PATCH', prefix: QuestionPrefix, path: '/:id/test' } as const;
+	export const method = 'PATCH' as const;
+	export const path = '/:id/test' as const;
 	export type Params = IdParams;
 	export interface Body {
 		test_id: number;
@@ -78,7 +85,8 @@ export namespace QuestionSetTest {
 
 /** Updates the grade parameters for a question */
 export namespace QuestionSetGradeParams {
-	export const route = { method: 'PUT', prefix: QuestionPrefix, path: '/:id/grade-params' } as const;
+	export const method = 'PUT' as const;
+	export const path = '/:id/grade-params' as const;
 	export type Params = IdParams;
 	export interface Body {
 		params_json: string;

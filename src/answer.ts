@@ -9,20 +9,23 @@ import { IdParams, OkIdResponse, OkResponse } from "./common";
 
 /** Lists all answers */
 export namespace AnswerList {
-	export const route = { method: 'GET', path: '/answer' } as const;
+	export const method = 'GET' as const;
+	export const path = '/answer' as const;
 	export type Response = Answer[];
 }
 
 /** Gets a single answer by ID */
 export namespace AnswerGet {
-	export const route = { method: 'GET', path: '/answer/:id' } as const;
+	export const method = 'GET' as const;
+	export const path = '/answer/:id' as const;
 	export type Params = IdParams;
 	export type Response = Answer;
 }
 
 /** Creates a single answer */
 export namespace AnswerCreate {
-	export const route = { method: 'POST', path: '/answer' } as const;
+	export const method = 'POST' as const;
+	export const path = '/answer' as const;
 	export interface Query {
 		student_id: number;
 		question_id: number;
@@ -33,7 +36,8 @@ export namespace AnswerCreate {
 
 /** Deletes an answer */
 export namespace AnswerDelete {
-	export const route = { method: 'DELETE', path: '/answer/:id' } as const;
+	export const method = 'DELETE' as const;
+	export const path = '/answer/:id' as const;
 	export type Params = IdParams;
 	export type Response = OkResponse;
 }
@@ -42,7 +46,8 @@ export namespace AnswerDelete {
 
 /** Gets an answer by student and question */
 export namespace AnswerByStudent {
-	export const route = { method: 'GET', path: '/answer/by-student/:student_id' } as const;
+	export const method = 'GET' as const;
+	export const path = '/answer/by-student/:student_id' as const;
 	export interface Params {
 		student_id: number;
 	}
@@ -54,7 +59,8 @@ export namespace AnswerByStudent {
 
 /** Updates an answer's text */
 export namespace AnswerUpdateText {
-	export const route = { method: 'PATCH', path: '/answer/:id/text' } as const;
+	export const method = 'PATCH' as const;
+	export const path = '/answer/:id/text' as const;
 	export type Params = IdParams;
 	export interface Body {
 		text: string;
@@ -64,7 +70,8 @@ export namespace AnswerUpdateText {
 
 /** Updates an answer's blank status */
 export namespace AnswerUpdateBlank {
-	export const route = { method: 'PATCH', path: '/answer/:id/blank' } as const;
+	export const method = 'PATCH' as const;
+	export const path = '/answer/:id/blank' as const;
 	export type Params = IdParams;
 	export interface Body {
 		is_blank: boolean;
@@ -74,7 +81,8 @@ export namespace AnswerUpdateBlank {
 
 /** Updates an answer's format assessment */
 export namespace AnswerUpdateFormat {
-	export const route = { method: 'PATCH', path: '/answer/:id/format' } as const;
+	export const method = 'PATCH' as const;
+	export const path = '/answer/:id/format' as const;
 	export type Params = IdParams;
 	export interface Body {
 		level: FormatLevels | null;
@@ -85,7 +93,8 @@ export namespace AnswerUpdateFormat {
 
 /** Toggles the protection status of an answer */
 export namespace AnswerToggleProtection {
-	export const route = { method: 'PATCH', path: '/answer/:id/protected' } as const;
+	export const method = 'PATCH' as const;
+	export const path = '/answer/:id/protected' as const;
 	export type Params = IdParams;
 	export interface Body {
 		protected: boolean;
@@ -98,7 +107,8 @@ export namespace AnswerToggleProtection {
 
 /** Sets the grade for an answer */
 export namespace AnswerSetGrade {
-	export const route = { method: 'PATCH', path: '/answer/:id/grade' } as const;
+	export const method = 'PATCH' as const;
+	export const path = '/answer/:id/grade' as const;
 	export type Params = IdParams;
 	export interface Body {
 		grade?: number;
@@ -109,7 +119,8 @@ export namespace AnswerSetGrade {
 
 /** Updates the coherence assessment for an answer */
 export namespace AnswerSetCoherence {
-	export const route = { method: 'PATCH', path: '/answer/:id/coherence' } as const;
+	export const method = 'PATCH' as const;
+	export const path = '/answer/:id/coherence' as const;
 	export type Params = IdParams;
 	export interface Body {
 		level?: CoherenceLevels;
