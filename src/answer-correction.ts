@@ -2,14 +2,13 @@ import type {
 	Answer,
 	Derived,
 } from "@princio/bqool";
-import { IdParams, OkResponse } from "./common";
-import { AnswerByStudent } from "./answer";
+import { IdParams } from "./common";
 
 // ── Answer Correction ──────────────────────────────────────────────
 
 /** Gets full answer detail with correction data */
-/** GET /answer/:id/detail */
 export namespace AnswerCorrection {
+	export const route = { method: 'GET', path: '/answer/:id/correction' } as const;
 	export type Params = IdParams;
 	export interface Response extends Answer {
 		correction: Derived.Correction;

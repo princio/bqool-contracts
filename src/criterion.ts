@@ -4,8 +4,8 @@ import type { IdParams, OkIdResponse, OkResponse } from "./common";
 // ── CriterionController (prefix: criterion/) ──────────────────────
 
 /** Lists criteria for a question */
-/** GET /criterion/list?question_id=:questionId */
 export namespace CriterionList {
+	export const route = { method: 'GET', path: '/criterion/list' } as const;
 	export interface Query {
 		question_id: number;
 	}
@@ -13,33 +13,33 @@ export namespace CriterionList {
 }
 
 /** Gets a single criterion */
-/** GET /criterion/criteria/:id */
 export namespace CriterionGet {
+	export const route = { method: 'GET', path: '/criterion/criteria/:id' } as const;
 	export type Params = IdParams;
 	export type Response = Criterion;
 }
 
 /** Creates a new criterion */
-/** POST /criterion/questions/:questionId/criteria */
 export namespace CriterionCreate {
+	export const route = { method: 'POST', path: '/criterion/questions/:questionId/criteria' } as const;
 	export interface Params {
 		questionId: number;
 	}
-	export type Request = Omit<Criterion, "id" | "question" | "booleanqs">;
+	export type Body = Omit<Criterion, "id" | "question" | "booleanqs">;
 	export type Response = OkIdResponse;
 }
 
 /** Updates fields on a criterion */
-/** PATCH /criterion/criteria/:id */
 export namespace CriterionUpdate {
+	export const route = { method: 'PATCH', path: '/criterion/criteria/:id' } as const;
 	export type Params = IdParams;
-	export type Request = Partial<Omit<Criterion, "id" | "question" | "booleanqs">>;
+	export type Body = Partial<Omit<Criterion, "id" | "question" | "booleanqs">>;
 	export type Response = OkResponse;
 }
 
 /** Deletes a criterion */
-/** DELETE /criterion/criteria/:id */
 export namespace CriterionDelete {
+	export const route = { method: 'DELETE', path: '/criterion/criteria/:id' } as const;
 	export type Params = IdParams;
 	export type Response = OkResponse;
 }
@@ -47,8 +47,8 @@ export namespace CriterionDelete {
 // ── Queries ─────────────────────────────────────────────────────
 
 /** Gets a criterion with its boolean questions */
-/** GET /criterion/criteria/:id/detail */
 export namespace CriterionGetDetail {
+	export const route = { method: 'GET', path: '/criterion/criteria/:id/detail' } as const;
 	export type Params = IdParams;
 	export interface Response {
 		criterion: Criterion;

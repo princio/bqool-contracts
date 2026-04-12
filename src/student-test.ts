@@ -4,8 +4,8 @@ import type { IdParams, OkIdResponse, OkResponse } from "./common";
 // ── CRUD ───────────────────────────────────────────────────────────
 
 /** Lists student-tests for a given test */
-/** GET /student-test?test_id=:testId */
 export namespace StudentTestList {
+	export const route = { method: 'GET', path: '/student-test' } as const;
 	export interface Query {
 		test_id: number;
 	};
@@ -13,8 +13,8 @@ export namespace StudentTestList {
 }
 
 /** Gets a student-test by id */
-/** GET /student-test/:id */
 export namespace StudentTestGet {
+	export const route = { method: 'GET', path: '/student-test/:id' } as const;
 	export type Params = IdParams;
 	export interface Response extends StudentTest {
 		student: Student;
@@ -23,9 +23,9 @@ export namespace StudentTestGet {
 }
 
 /** Creates a new student-test record */
-/** POST /student-test */
 export namespace StudentTestCreate {
-	export interface Request {
+	export const route = { method: 'POST', path: '/student-test' } as const;
+	export interface Body {
 		student_id: number;
 		test_id: number;
 	}
@@ -33,8 +33,8 @@ export namespace StudentTestCreate {
 }
 
 /** Deletes a student-test record */
-/** DELETE /student-test/:id */
 export namespace StudentTestDelete {
+	export const route = { method: 'DELETE', path: '/student-test/:id' } as const;
 	export type Params = IdParams;
 	export type Response = OkResponse;
 }
@@ -42,18 +42,18 @@ export namespace StudentTestDelete {
 // ── Specific mutations ──────────────────────────────────────────
 
 /** Updates a student-test's grid scores */
-/** PATCH /student-test/:id/grid */
 export namespace StudentTestUpdateGrid {
+	export const route = { method: 'PATCH', path: '/student-test/:id/grid' } as const;
 	export type Params = IdParams;
-	export type Request = GridScore;
+	export type Body = GridScore;
 	export type Response = OkResponse;
 }
 
 /** Updates a student-test's grade */
-/** PATCH /student-test/:id/grade */
 export namespace StudentTestUpdateGrade {
+	export const route = { method: 'PATCH', path: '/student-test/:id/grade' } as const;
 	export type Params = IdParams;
-	export interface Request {
+	export interface Body {
 		value: number | null;
 		rationale: string | null;
 	}
@@ -61,10 +61,10 @@ export namespace StudentTestUpdateGrade {
 }
 
 /** Updates a student-test's bonus */
-/** PATCH /student-test/:id/bonus */
 export namespace StudentTestUpdateBonus {
+	export const route = { method: 'PATCH', path: '/student-test/:id/bonus' } as const;
 	export type Params = IdParams;
-	export interface Request {
+	export interface Body {
 		value: number | null;
 		rationale: string | null;
 	}

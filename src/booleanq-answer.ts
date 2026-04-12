@@ -4,8 +4,8 @@ import type { IdParams, OkResponse } from "./common";
 // ── BooleanQAnswerController (prefix: booleanq-answers) ─────────────
 
 /** Lists booleanq-answers for an answer */
-/** GET /booleanq-answer?answer_id=:answerId */
 export namespace BooleanQAnswerList {
+	export const route = { method: 'GET', path: '/booleanq-answer' } as const;
 	export interface Query {
 		answer_id: number;
 	}
@@ -13,8 +13,8 @@ export namespace BooleanQAnswerList {
 }
 
 /** Deletes a booleanq-answer */
-/** DELETE /booleanq-answer/:id */
 export namespace BooleanQAnswerDelete {
+	export const route = { method: 'DELETE', path: '/booleanq-answer/:id' } as const;
 	export type Params = IdParams;
 	export type Response = OkResponse;
 }
@@ -22,10 +22,10 @@ export namespace BooleanQAnswerDelete {
 // ── Specific mutations ──────────────────────────────────────────
 
 /** Update a booleanq-answer with optional citations and rationale */
-/** PATCH /booleanq-answer/:id */
 export namespace BooleanQAnswerUpdate {
+	export const route = { method: 'PATCH', path: '/booleanq-answer/:id' } as const;
 	export type Params = IdParams;
-	export interface Request {
+	export interface Body {
 		satisfied?: boolean;
 		citations?: string[];
 		rationale?: string;
@@ -34,22 +34,22 @@ export namespace BooleanQAnswerUpdate {
 }
 
 /** Increment booleanq-answer review counter */
-/** POST /booleanq-answer/:id/review */
 export namespace BooleanQAnswerReview {
+	export const route = { method: 'POST', path: '/booleanq-answer/:id/review' } as const;
 	export type Params = IdParams;
 	export type Response = OkResponse;
 }
 
 /** Resets the review count for a booleanq-answer */
-/** DELETE /booleanq-answer/:id/review */
 export namespace BooleanQAnswerReviewReset {
+	export const route = { method: 'DELETE', path: '/booleanq-answer/:id/review' } as const;
 	export type Params = IdParams;
 	export type Response = OkResponse;
 }
 
 /** Initializes booleanq-answers for a student-question pair */
-/** POST /booleanq-answer/init?answer_id=:answerId */
 export namespace BooleanQAnswerInit {
+	export const route = { method: 'POST', path: '/booleanq-answer/init' } as const;
 	export interface Query {
 		answer_id: number;
 	}

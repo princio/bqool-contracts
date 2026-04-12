@@ -5,8 +5,8 @@
 // the query parameters.
 
 /** Generates a PDF of a single student's answer to a question */
-/** GET /pdf/student-question?student_id=:studentId&question_id=:questionId */
 export namespace PdfStudentQuestion {
+	export const route = { method: 'GET', path: '/pdf/student-question' } as const;
 	export interface Query {
 		student_id: number;
 		question_id: number;
@@ -15,8 +15,8 @@ export namespace PdfStudentQuestion {
 }
 
 /** Generates a PDF of a student's full test */
-/** GET /pdf/student-test?student_id=:studentId&test_id=:testId */
 export namespace PdfStudentTest {
+	export const route = { method: 'GET', path: '/pdf/student-test' } as const;
 	export interface Query {
 		student_id: number;
 		test_id: number;

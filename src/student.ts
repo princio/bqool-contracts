@@ -1,24 +1,20 @@
 import type {
-	Answer,
 	Classroom,
-	Question,
 	Student,
-	StudentTest,
-	Test,
 } from "@princio/bqool";
 import { IdParams, OkIdResponse, OkResponse } from "./common";
 
 // ── StudentController (prefix: /student) ─────────────────────────
 
 /** Lists all students */
-/** GET /student */
 export namespace StudentList {
+	export const route = { method: 'GET', path: '/student' } as const;
 	export type Response = (Student & { classroom: Classroom })[];
 }
 
 /** Gets a student detail */
-/** GET /student/:id */
 export namespace StudentGet {
+	export const route = { method: 'GET', path: '/student/:id' } as const;
 	export type Params = IdParams;
 	export interface Response {
 		student: Student;
@@ -27,34 +23,34 @@ export namespace StudentGet {
 }
 
 /** Creates a new student */
-/** POST /student */
 export namespace StudentCreate {
-	export type Request = Omit<Student, 'id' | 'classroom'> & { classroom_id: number };
+	export const route = { method: 'POST', path: '/student' } as const;
+	export type Body = Omit<Student, 'id' | 'classroom'> & { classroom_id: number };
 	export type Response = OkIdResponse;
 }
 
 /** Deletes a student */
-/** DELETE /student/:id */
 export namespace StudentDelete {
+	export const route = { method: 'DELETE', path: '/student/:id' } as const;
 	export type Params = IdParams;
 	export type Response = OkResponse;
 }
 
 /** Updates a student's name */
-/** PATCH /student/:id */
 export namespace StudentUpdateName {
+	export const route = { method: 'PATCH', path: '/student/:id' } as const;
 	export type Params = IdParams;
-	export interface Request {
+	export interface Body {
 		name: string;
 	}
 	export type Response = OkResponse;
 }
 
-/** Updates a student's name */
-/** PATCH /student/:id */
+/** Updates a student's classroom */
 export namespace StudentUpdateClassroom {
+	export const route = { method: 'PATCH', path: '/student/:id/classroom' } as const;
 	export type Params = IdParams;
-	export interface Request {
+	export interface Body {
 		classroom_id: number;
 	}
 	export type Response = OkResponse;

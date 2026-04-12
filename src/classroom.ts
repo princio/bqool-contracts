@@ -4,14 +4,14 @@ import type { IdParams, OkIdResponse, OkResponse } from "./common";
 // ── ClassroomController (prefix: classroom) ───────────────────────
 
 /** Lists all classrooms */
-/** GET /classroom */
 export namespace ClassroomList {
+	export const route = { method: 'GET', path: '/classroom' } as const;
 	export type Response = Classroom[];
 }
 
 /** Classroom detail with students and tests */
-/** GET /classroom/:id */
 export namespace ClassroomDetail {
+	export const route = { method: 'GET', path: '/classroom/:id' } as const;
 	export type Params = IdParams;
 	export interface Response extends Classroom {
 		students: Student[];
@@ -20,25 +20,25 @@ export namespace ClassroomDetail {
 }
 
 /** Creates a new classroom */
-/** POST /classroom */
 export namespace ClassroomCreate {
-	export interface Request {
+	export const route = { method: 'POST', path: '/classroom' } as const;
+	export interface Body {
 		name: string;
 	}
 	export type Response = OkIdResponse;
 }
 
 /** Updates a classroom */
-/** PUT /classroom/:id */
 export namespace ClassroomUpdate {
+	export const route = { method: 'PUT', path: '/classroom/:id' } as const;
 	export type Params = IdParams;
-	export type Request = Omit<Classroom, "id" | "students">;
+	export type Body = Omit<Classroom, "id" | "students">;
 	export type Response = OkResponse;
 }
 
 /** Deletes a classroom */
-/** DELETE /classroom/:id */
 export namespace ClassroomDelete {
+	export const route = { method: 'DELETE', path: '/classroom/:id' } as const;
 	export type Params = IdParams;
 	export type Response = OkResponse;
 }
@@ -46,8 +46,8 @@ export namespace ClassroomDelete {
 // ── Queries ─────────────────────────────────────────────────────
 
 /** Classroom summary with test/question tree */
-/** GET /classroom/dashboard */
 export namespace ClassroomSummary {
+	export const route = { method: 'GET', path: '/classroom/dashboard' } as const;
 	export type TestWithQuestion = Test & {
 		questions: Pick<Question, "id" | "name">[];
 	};
@@ -60,16 +60,16 @@ export namespace ClassroomSummary {
 // ── Specific mutations ──────────────────────────────────────────
 
 /** Adds a student to a classroom */
-/** POST /classroom/:id/student */
 export namespace ClassroomStudentAdd {
+	export const route = { method: 'POST', path: '/classroom/:id/student' } as const;
 	export type Params = IdParams;
-	export type Request = Omit<Student, "id" | 'classroom'>;
+	export type Body = Omit<Student, "id" | 'classroom'>;
 	export type Response = OkIdResponse;
 }
 
 /** Removes a student from a classroom */
-/** DELETE /classroom/:id/student/:studentId */
 export namespace ClassroomStudentRemove {
+	export const route = { method: 'DELETE', path: '/classroom/:id/student/:studentId' } as const;
 	export interface Params {
 		id: number;
 		studentId: number;
