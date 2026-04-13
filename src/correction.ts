@@ -20,7 +20,7 @@ export namespace CorrectionStudentTest {
 	export const method = 'GET' as const;
 	export const path = '/correction/:student_test_id/student-test' as const;
 	export type Params = IdParams;
-	export type Response = Omit<StudentTest, 'answer'> & ({
+	export type Response = Omit<StudentTest, 'answers'> & ({
 		corrections: Correction.Answer[];
 	});
 }
