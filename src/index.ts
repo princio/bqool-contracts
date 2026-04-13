@@ -1,5 +1,5 @@
 export * from "./answer";
-export * from "./answer-correction";
+export * from "./correction";
 export * from "./booleanq";
 export * from "./booleanq-answer";
 export * from "./classroom";
@@ -9,7 +9,6 @@ export * from "./grid";
 export * from "./pdf";
 export * from "./penmark";
 export * from "./question";
-export * from "./rubric";
 export * from "./student";
 export * from "./student-test";
 export * from "./test";

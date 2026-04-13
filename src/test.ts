@@ -1,10 +1,11 @@
 import type {
+	Answer,
 	Classroom,
 	Question,
 	Test,
 } from "@princio/bqool";
 import type { IdParams, OkIdResponse, OkResponse } from "./common";
-import { AnswerCorrection } from "./answer-correction";
+import { CorrectionAnswer } from "./correction";
 
 // ── CRUD ───────────────────────────────────────────────────────────
 
@@ -51,16 +52,12 @@ export namespace TestDelete {
 
 // ── Queries ─────────────────────────────────────────────────────
 
-/** Gets test results with all student answers */
-export namespace TestCorrections {
+/** Gets all answers for a test */
+export namespace TestGetAnswers {
 	export const method = 'GET' as const;
-	export const path = '/test/:id/results' as const;
+	export const path = '/test/:id/answers' as const;
 	export type Params = IdParams;
-	export interface Response {
-		test: Test;
-		questions: Question[];
-		corrections: AnswerCorrection.Response[];
-	}
+	export type Response = Answer[];
 }
 
 // ── Specific mutations ──────────────────────────────────────────
@@ -74,6 +71,17 @@ export namespace TestUpdateName {
 		name: string;
 	}
 	export type Response = OkResponse;
+}
+
+/** Generates answer rows for all students in a test */
+export namespace TestGenerateAnswers {
+	export const method = 'POST' as const;
+	export const path = '/test/:id/generate-answers' as const;
+	export type Params = IdParams;
+	export interface Response {
+		ok: boolean;
+		created: number;
+	}
 }
 
 /** Sets the grid for a test */
