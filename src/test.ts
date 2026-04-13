@@ -25,10 +25,7 @@ export namespace TestGetById {
 	export const method = 'GET' as const;
 	export const path = '/test/:id' as const;
 	export type Params = IdParams;
-	export interface Response {
-		test: Test;
-		classroom: Classroom;
-	}
+	export type Response = Test;
 }
 
 /** Creates a new test in a classroom */

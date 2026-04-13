@@ -20,9 +20,7 @@ export namespace QuestionList {
 	export interface Query {
 		test_id?: number;
 	}
-	export interface Response {
-		questions: Question[];
-	}
+	export type Response = Question[];
 }
 
 /** Gets a single question (bare domain object) */
