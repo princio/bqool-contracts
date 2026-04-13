@@ -1,4 +1,4 @@
-import type { GridScore, Student, StudentTest, Test } from "@princio/bqool";
+import type { GridScore, StudentTest } from "@princio/bqool";
 import type { IdParams, OkIdResponse, OkResponse } from "./common";
 
 // ── CRUD ───────────────────────────────────────────────────────────
@@ -19,10 +19,7 @@ export namespace StudentTestGet {
 	export const method = 'GET' as const;
 	export const path = '/student-test/:id' as const;
 	export type Params = IdParams;
-	export interface Response extends StudentTest {
-		student: Student;
-		test: Test;
-	}
+	export type Response = StudentTest;
 }
 
 /** Creates a new student-test record */
@@ -77,4 +74,28 @@ export namespace StudentTestUpdateBonus {
 		rationale: string | null;
 	}
 	export type Response = OkResponse;
+}
+
+/** Checks answer and booleanq-answer coverage for a student-test */
+/** GET /student-test/:id/check */
+export namespace StudentTestCheck {
+	export const method = 'GET' as const;
+	export const path = '/student-test/:id/check' as const;
+	export type Params = IdParams;
+	export interface Response {
+		answers: { expected: number; existents: number };
+		booleanq_answers: { expected: number; existents: number };
+	}
+}
+
+/** Generates missing answers and booleanq-answers for a student-test */
+/** POST /student-test/:id/generate */
+export namespace StudentTestGenerate {
+	export const method = 'POST' as const;
+	export const path = '/student-test/:id/generate' as const;
+	export type Params = IdParams;
+	export interface Response {
+		answers_created: number;
+		booleanq_answers_created: number;
+	}
 }

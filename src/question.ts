@@ -16,7 +16,7 @@ export const QuestionPrefix = '/question';
 /** Lists questions, optionally filtered */
 export namespace QuestionList {
 	export const method = 'GET' as const;
-	export const path = '/all' as const;
+	export const path = '/list' as const;
 	export interface Query {
 		test_id?: number;
 	}

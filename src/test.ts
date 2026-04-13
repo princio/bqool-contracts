@@ -81,6 +81,27 @@ export namespace TestGenerateAnswers {
 	}
 }
 
+/** Checks answer and booleanq-answer coverage per student */
+/** GET /test/:id/check */
+export namespace TestCheck {
+	export const method = 'GET' as const;
+	export const path = '/test/:id/check' as const;
+	export type Params = IdParams;
+	export interface Row {
+		student_id: number;
+		student_name: string;
+		answers: {
+			expected: number;
+			existents: number;
+		};
+		booleanq_answers: {
+			expected: number;
+			existents: number;
+		};
+	}
+	export type Response = Row[];
+}
+
 /** Sets the grid for a test */
 export namespace TestSetGrid {
 	export const method = 'PATCH' as const;
