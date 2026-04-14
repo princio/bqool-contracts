@@ -48,7 +48,7 @@ export namespace BooleanQAnswerReview {
 /** Resets the review count for a booleanq-answer */
 export namespace BooleanQAnswerReviewReset {
 	export const method = 'DELETE' as const;
-	export const path = '/booleanq-answer/:id/review' as const;
+	export const path = '/booleanq-answer/:id/review-reset' as const;
 	export type Params = IdParams;
 	export type Response = OkResponse;
 }
